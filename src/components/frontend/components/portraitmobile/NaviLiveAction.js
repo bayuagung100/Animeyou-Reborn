@@ -17,7 +17,7 @@ class NaviLiveAction extends Component {
                 liveaction: LiveAction,
                 
             })
-        }, 4000);
+        }, 3000);
     }
     componentDidMount(){
         this.getDummy();

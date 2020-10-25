@@ -17,7 +17,7 @@ class NaviUpdateTerbaru extends Component {
                 updated: Updated,
                 
             })
-        }, 4000);
+        }, 3000);
     }
     componentDidMount(){
         this.getDummy();

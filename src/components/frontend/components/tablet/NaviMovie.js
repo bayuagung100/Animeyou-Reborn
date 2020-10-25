@@ -17,7 +17,7 @@ class NaviMovie extends Component {
                 movie: Movie,
                 
             })
-        }, 4000);
+        }, 3000);
     }
     componentDidMount(){
         this.getDummy();

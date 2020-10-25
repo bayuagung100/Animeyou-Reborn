@@ -47,11 +47,13 @@ class Header extends Component {
             searchBox: '',
             loading: false,
             goSearch: false,
+            goCollection: false,
             menuSetting: false,
             menuTampilan: false,
         };
         this.searchBoxChange = this.searchBoxChange.bind(this);
         this.SearchClick = this.SearchClick.bind(this);
+        this.CollectionClick = this.CollectionClick.bind(this);
         this.SettingClick = this.SettingClick.bind(this);
         this.HideSetting = this.HideSetting.bind(this);
         
@@ -99,6 +101,10 @@ class Header extends Component {
         });
     }
 
+    CollectionClick(){
+        this.setState({goCollection: true});
+    }
+
     searchBoxChange(e){
         this.setState({
             [e.target.name]: e.target.value
@@ -110,7 +116,7 @@ class Header extends Component {
             this.setState({
                 loading: true,
             })
-        }, 4000);
+        }, 3000);
 
     }
     
@@ -118,14 +124,15 @@ class Header extends Component {
     render() {
         if (this.state.goSearch) {
             return (<Redirect push to="/search"/>)
-          }
+        } else if (this.state.goCollection) {
+            return (<Redirect push to="/collection"/>)
+        }
         return (
             
             // <ThemeContext.Consumer>
             <MyContext.Consumer>
             {
                 ({DarkMode, gelapClick, terangClick}) => {
-                    console.log("header:" + DarkMode);
                 return(
                 <div>
                     <div className={"nav-container "+(DarkMode ? "dark-mode":"")}>
@@ -163,7 +170,7 @@ class Header extends Component {
                                         <FontAwesomeIcon icon={faEllipsisV} size="lg"/>
                                         <span className="settingtooltip tooltip-left">Setting</span>
                                     </button>
-                                    <button className="collection">
+                                    <button className="collection" onClick={this.CollectionClick}>
                                         <FontAwesomeIcon icon={faList} size="lg"/>
                                         <span className="collectiontooltip tooltip-left">Collection</span>
                                     </button>

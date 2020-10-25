@@ -20,6 +20,10 @@ class Collection extends Component {
         return (
             <div>
                 <Header/>
+                <br/>
+                <br/>
+                <br/>
+                <p>ini collection</p>
                 <Footer path={path}/>
             </div>
         )

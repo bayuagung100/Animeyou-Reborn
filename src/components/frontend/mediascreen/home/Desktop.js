@@ -4,6 +4,8 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import Updated from "../../dummy/Updated";
 import Movie from "../../dummy/Movie";
 import LiveAction from '../../dummy/LiveAction';
+import Sidebar from '../../Sidebar';
+import { Link } from 'react-router-dom';
 
 class Desktop extends Component {
     constructor(props) {
@@ -28,7 +30,7 @@ class Desktop extends Component {
                 loadingLiveAction: true,
                 liveaction: LiveAction,
             })
-        }, 4000);
+        }, 3000);
         // Updated.map((value, index) => {
         //     console.log(value)
         // })
@@ -55,21 +57,29 @@ class Desktop extends Component {
                                             return(
                                                 <div key={index} className="appcol-4">
                                                     <div className="appmain-items">
-                                                        <div className="appmain-itemsImg">
-                                                            <img src={value.image} alt={value.title} />
-                                                        </div>
-                                                        <div className="appmain-itemsBlock1">
-                                                            <div className="appmain-itemsAnimeImg">
+                                                        <Link to={`/watch?v=${value.title}`}>
+                                                            <div className="appmain-itemsImg">
                                                                 <img src={value.image} alt={value.title} />
                                                             </div>
-                                                            <div className="appmain-itemsTitleEpisode">
-                                                                {value.title}
-                                                            </div>
+                                                        </Link>
+                                                        <div className="appmain-itemsBlock1">
+                                                            <Link to={`/anime/${value.anime}`}>
+                                                                <div className="appmain-itemsAnimeImg">
+                                                                    <img src={value.image} alt={value.title} />
+                                                                </div>
+                                                            </Link>
+                                                            <Link to={`/watch?v=${value.title}`}>
+                                                                <div className="appmain-itemsTitleEpisode">
+                                                                    {value.title}
+                                                                </div>
+                                                            </Link>
                                                         </div>
                                                         <div className="appmain-itemsBlock2">
+                                                            <Link to={`/anime/${value.anime}`}>
                                                             <div className="appmain-itemsAnimeTitle">
                                                                 {value.anime}
                                                             </div>
+                                                            </Link>
                                                             <div className="appmain-itemsViews">
                                                                 {value.views} views
                                                             </div>
@@ -454,15 +464,7 @@ class Desktop extends Component {
             
                 </div>
                 <div className="appcol-4">
-                    <div className="appmain-sidebar">
-                        <div className="fp">
-                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fanimeyou.net%2F&tabs&width=400&height=214&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1978326952425638" 
-                            width="400" height="214" style={{border: "none", overflow:"hidden"}} scrolling="no" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                        </div>
-                        <div className="copyright">
-                            © 2020, Animeyou. all rights reserved
-                        </div>
-                    </div>
+                    <Sidebar/>
                 </div>
             </div>
         

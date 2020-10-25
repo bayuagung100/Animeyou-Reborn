@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import "./css/app.scss";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect,
+  Link,
+  withRouter
+} from "react-router-dom";
 import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
@@ -47,8 +55,9 @@ class App extends Component {
   }
   render() {
     const { path } = this.props.match;
+    const match = this.props.match.path;
     console.log("app:" + path);
-    console.log("app:" + this.state.DarkMode);
+    console.log("app:" + match);
     return (
         // <ThemeContext.Provider value={this.state}>
         //   <Header/>
@@ -64,4 +73,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
