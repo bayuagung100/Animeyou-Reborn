@@ -1,0 +1,1087 @@
+$bg-dark-mode: #222;
+$bg-dark-grey: #555;
+$white-text: #fff;
+@media (min-width: 1025px) {
+    .body-container {
+        margin-top: 56px;
+        // margin-bottom: 56px;
+        padding-top: 20px;
+        background: #ececec;
+
+        .appmain {
+            .appmain-content {
+                margin-left: 20px;
+                margin-right: 20px;
+                margin-bottom: 30px;
+                background: #fff;
+                border-radius: 2px;
+
+                .appmain-title {
+                    padding: 10px;
+                    font-family: Mukta;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 24px;
+                    line-height: 40px;
+                    color: #000000;
+                }
+
+                .appmain-items {
+                    padding: 8px;
+                    // height: auto;
+
+                    .appmain-ctitemsImg {
+                        width: 100%;
+                        height: 160px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-itemsImg {
+                        img {
+                            width: 100%;
+                            height: auto;
+                            max-height: 160px;
+                        }
+                    }
+
+                    .appmain-ctitemsBlock1 {
+                        padding: 4px;
+                        height: 50px;
+
+                        .appmain-ctitemsAnimeImg {
+                            float: left;
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                            background-color: #c4c4c4;
+                            background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                            background-size: 200px 100%;
+                            background-repeat: no-repeat;
+                            animation: loading 1.2s ease-in-out infinite;
+                        }
+                        .appmain-ctitemsTitleEpisode {
+                            float: left;
+                            margin-left: 6px;
+                            width: calc(100% - 42px);
+                            height: 36px;
+                            background-color: #c4c4c4;
+                            background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                            background-size: 200px 100%;
+                            background-repeat: no-repeat;
+                            animation: loading 1.2s ease-in-out infinite;
+                        }
+                    }
+
+                    .appmain-itemsBlock1 {
+                        padding: 4px;
+                        height: 76px;
+                        .appmain-itemsAnimeImg {
+                            img {
+                                float: left;
+                                // width: 36px;
+                                // height: 36px;
+                                border-radius: 50%;
+                                width: 100%;
+                                height: auto;
+                                max-width: 36px;
+                                max-height: 36px;
+                            }
+                        }
+                        .appmain-itemsTitleEpisode {
+                            float: left;
+
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+
+                            padding: 5px 5px 5px 6px;
+                            width: calc(100% - 36px);
+
+                            font-family: Mukta;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 14px;
+
+                            color: #000000;
+                        }
+                    }
+
+                    .appmain-ctitemsBlock2 {
+                        padding: 4px;
+                        height: 30px;
+
+                        .appmain-ctitemsAnimeTitle {
+                            float: left;
+                            margin-left: 42px;
+                            width: calc(100% - 30%);
+                            height: 24px;
+                            background-color: #c4c4c4;
+                            background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                            background-size: 200px 100%;
+                            background-repeat: no-repeat;
+                            animation: loading 1.2s ease-in-out infinite;
+                        }
+                        .appmain-ctitemsViews {
+                            float: left;
+                            margin-top: 2px;
+                            margin-left: 42px;
+                            width: 44px;
+                            height: 6px;
+                            background-color: #c4c4c4;
+                            background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                            background-size: 200px 100%;
+                            background-repeat: no-repeat;
+                            animation: loading 1.2s ease-in-out infinite;
+                        }
+                        .appmain-ctitemsUploaded {
+                            float: left;
+                            margin-top: 2px;
+                            margin-left: 2px;
+                            width: 44px;
+                            height: 6px;
+                            background-color: #c4c4c4;
+                            background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                            background-size: 200px 100%;
+                            background-repeat: no-repeat;
+                            animation: loading 1.2s ease-in-out infinite;
+                        }
+                    }
+
+                    .appmain-itemsBlock2 {
+                        padding: 4px;
+                        height: 80px;
+
+                        .appmain-itemsAnimeTitle {
+                            float: left;
+                            margin-left: 42px;
+                            width: calc(100% - 42px);
+
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 1; // ... on line 1
+                            -webkit-box-orient: vertical;
+                        }
+                        .appmain-itemsViews {
+                            float: left;
+                            margin-top: 2px;
+                            margin-left: 42px;
+                            // width: 44px;
+                            // height: 24px;
+                        }
+                        .appmain-itemsDots {
+                            float: left;
+                            margin-right: 4px;
+                            margin-left: 4px;
+
+                            font-family: Mukta;
+                            font-style: normal;
+                            font-weight: bold;
+                            line-height: 1.3;
+                            // width: 44px;
+                            // height: 24px;
+                        }
+                        .appmain-itemsUploaded {
+                            float: left;
+                            margin-top: 2px;
+                            margin-left: 2px;
+                            // width: 44px;
+                            // height: 6px;
+                        }
+                    }
+                }
+
+                .appmain-more {
+                    // padding-top: 20px;
+
+                    button.more {
+                        width: 100%;
+                        height: 34px;
+                        outline: none;
+                        border: none;
+                        border-bottom: 4px solid rgba(0, 0, 0, 0.7);
+                        background: #c4c4c4;
+                    }
+                }
+            }
+
+            .appmain-sidebar {
+                margin-left: 20px;
+                margin-right: 20px;
+                background: #fff;
+                border-radius: 2px;
+                position: fixed;
+                height: 80%;
+                width: calc(100% - 70%);
+                z-index: 1;
+                overflow-x: hidden;
+
+                .fp{
+                    padding: 2px;
+                }
+                .copyright{
+                    position: fixed;
+                    padding-left: 20px;
+                    bottom: calc(100% - 90%);
+                    font-family: Mukta;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 15px;
+                    color: rgba(0, 0, 0, 0.75);
+                }
+            }
+        }
+    }
+    .body-container.dark-mode{
+        background:$bg-dark-mode;
+
+        .appmain {
+            .appmain-content {
+                background: $bg-dark-grey;
+                .appmain-title{
+                    color: $white-text;
+                }
+                .appmain-items {
+                    .appmain-itemsBlock1 {
+                        .appmain-itemsTitleEpisode {
+                            color: $white-text;
+                        }
+                    }
+                    .appmain-itemsBlock2 {
+                        color: $white-text;
+                    }
+                }
+                
+                
+            }
+            .appmain-sidebar {
+                background: $bg-dark-grey;
+                .copyright{
+                    color: $white-text;
+                }
+            }
+        }
+        
+    }
+    
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .body-container {
+        margin-top: 56px;
+        margin-bottom: 56px;
+        padding-top: 20px;
+        background: #ececec;
+
+        .appmain-content2 {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 30px;
+            background: #fff;
+            border-radius: 2px;
+
+            .appmain-navigation {
+                position: relative;
+                height: 50px;
+                background: #ffffff;
+                box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
+
+                .menu {
+                    margin: 0;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    -ms-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+
+                    .menu-text {
+                        font-family: Mukta;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 18px;
+                        line-height: 100%;
+                        color: rgba(0, 0, 0, 0.75);
+                    }
+                }
+            }
+            .active {
+                border-bottom: 4px solid rgba(0, 0, 0, 0.75);
+            }
+
+            .appmain-items {
+                padding: 8px;
+                // height: auto;
+
+                .appmain-ctitemsImg {
+                    width: 100%;
+                    height: 160px;
+                    background-color: #c4c4c4;
+                    background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                    background-size: 200px 100%;
+                    background-repeat: no-repeat;
+                    animation: loading 1.2s ease-in-out infinite;
+                }
+                .appmain-itemsImg {
+                    img {
+                        width: 100%;
+                        height: auto;
+                        max-height: 160px;
+                    }
+                }
+
+                .appmain-ctitemsBlock1 {
+                    padding: 4px;
+                    height: 46px;
+
+                    .appmain-ctitemsAnimeImg {
+                        float: left;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsTitleEpisode {
+                        float: left;
+                        margin-left: 6px;
+                        width: calc(100% - 42px);
+                        height: 36px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                }
+                .appmain-itemsBlock1 {
+                    padding: 4px;
+                    height: 76px;
+
+                    .appmain-itemsAnimeImg {
+                        img {
+                            float: left;
+                            // width: 36px;
+                            // height: 36px;
+                            border-radius: 50%;
+                            width: 100%;
+                            height: auto;
+                            max-width: 36px;
+                            max-height: 36px;
+                        }
+                    }
+                    .appmain-itemsTitleEpisode {
+                        float: left;
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+
+                        padding: 5px 5px 5px 6px;
+                        // width: 180px;
+                        width: calc(100% - 36px);
+
+                        font-family: Mukta;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 14px;
+
+                        color: #000000;
+                    }
+                }
+
+                .appmain-ctitemsBlock2 {
+                    padding: 4px;
+                    height: 26px;
+
+                    .appmain-ctitemsAnimeTitle {
+                        float: left;
+                        margin-left: 42px;
+                        width: calc(100% - 30%);
+                        height: 24px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsViews {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 42px;
+                        width: 44px;
+                        height: 6px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsUploaded {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 2px;
+                        width: 44px;
+                        height: 6px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                }
+                .appmain-itemsBlock2 {
+                    padding: 4px;
+                    height: 80px;
+
+                    .appmain-itemsAnimeTitle {
+                        float: left;
+                        margin-left: 42px;
+                        width: calc(100% - 42px);
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1; // ... on line 1
+                        -webkit-box-orient: vertical;
+                    }
+                    .appmain-itemsViews {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 42px;
+                        // width: 44px;
+                        // height: 24px;
+                    }
+                    .appmain-itemsDots {
+                        float: left;
+                        margin-right: 4px;
+                        margin-left: 4px;
+
+                        font-family: Mukta;
+                        font-style: normal;
+                        font-weight: bold;
+                        line-height: 1.3;
+                        // width: 44px;
+                        // height: 24px;
+                    }
+                    .appmain-itemsUploaded {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 2px;
+                        // width: 44px;
+                        // height: 6px;
+                    }
+                }
+            }
+
+            .appmain-more {
+                // padding-top: 20px;
+
+                button.more {
+                    width: 100%;
+                    height: 34px;
+                    outline: none;
+                    border: none;
+                    border-bottom: 4px solid rgba(0, 0, 0, 0.7);
+                    background: #c4c4c4;
+                }
+            }
+        }
+    }
+    .body-container.dark-mode{
+        background:$bg-dark-mode;
+
+        .appmain2 {
+            .appmain-content2 {
+                background: $bg-dark-grey;
+                .appmain-navigation {
+                    background: $bg-dark-grey;
+                    .menu {
+                        .menu-text{
+                            color: $white-text;
+                        }
+                    }
+                }
+                .appmain-items {
+                    .appmain-itemsBlock1 {
+                        .appmain-itemsTitleEpisode {
+                            color: $white-text;
+                        }
+                    }
+                    .appmain-itemsBlock2 {
+                        color: $white-text;
+                    }
+                }
+                
+                
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .body-container {
+        margin-top: 56px;
+        margin-bottom: 56px;
+        padding-top: 20px;
+        background: #ececec;
+
+        .appmain-content3 {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 30px;
+            background: #fff;
+            border-radius: 2px;
+
+            .scroll-navigation {
+                overflow-x: auto;
+                background: #ffffff;
+                box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
+                white-space: nowrap;
+
+                .appmain-navigation {
+                    position: relative;
+                    display: inline-block;
+                    height: 50px;
+                    // background: #FFFFFF;
+                    // box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
+
+                    .menu {
+                        width: 220px;
+                        position: relative;
+                        top: 50%;
+                        left: 50%;
+                        -ms-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+
+                        .menu-text {
+                            font-family: Mukta;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 18px;
+                            line-height: 100%;
+                            color: rgba(0, 0, 0, 0.75);
+                        }
+                    }
+                }
+                .active {
+                    border-bottom: 4px solid rgba(0, 0, 0, 0.75);
+                }
+            }
+
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            .scroll-navigation::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* Hide scrollbar for IE, Edge and Firefox */
+            .scroll-navigation {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none; /* Firefox */
+            }
+
+            .appmain-items {
+                padding: 8px;
+                // height: auto;
+
+                .appmain-ctitemsImg {
+                    width: 100%;
+                    height: 160px;
+                    background-color: #c4c4c4;
+                    background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                    background-size: 200px 100%;
+                    background-repeat: no-repeat;
+                    animation: loading 1.2s ease-in-out infinite;
+                }
+                .appmain-itemsImg {
+                    img {
+                        width: 100%;
+                        height: auto;
+                        max-height: 160px;
+                    }
+                }
+
+                .appmain-ctitemsBlock1 {
+                    padding: 4px;
+                    height: 46px;
+
+                    .appmain-ctitemsAnimeImg {
+                        float: left;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsTitleEpisode {
+                        float: left;
+                        margin-left: 6px;
+                        width: calc(100% - 42px);
+                        height: 36px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                }
+                .appmain-itemsBlock1 {
+                    padding: 4px;
+                    height: 76px;
+
+                    .appmain-itemsAnimeImg {
+                        img {
+                            float: left;
+                            // width: 36px;
+                            // height: 36px;
+                            border-radius: 50%;
+                            width: 100%;
+                            height: auto;
+                            max-width: 36px;
+                            max-height: 36px;
+                        }
+                    }
+                    .appmain-itemsTitleEpisode {
+                        float: left;
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+
+                        padding: 5px 5px 5px 6px;
+                        width: calc(100% - 36px);
+
+                        font-family: Mukta;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 14px;
+                        // text-align: justify;
+
+                        color: #000000;
+                    }
+                }
+
+                .appmain-ctitemsBlock2 {
+                    padding: 4px;
+                    height: 26px;
+
+                    .appmain-ctitemsAnimeTitle {
+                        float: left;
+                        margin-left: 42px;
+                        width: calc(100% - 30%);
+                        height: 24px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsViews {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 42px;
+                        width: 44px;
+                        height: 6px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsUploaded {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 2px;
+                        width: 44px;
+                        height: 6px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                }
+                .appmain-itemsBlock2 {
+                    padding: 4px;
+                    height: 80px;
+
+                    .appmain-itemsAnimeTitle {
+                        float: left;
+                        margin-left: 42px;
+                        // width: 160px;
+                        width: calc(100% - 42px);
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1; // ... on line 1
+                        -webkit-box-orient: vertical;
+                    }
+                    .appmain-itemsViews {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 42px;
+                        // width: 44px;
+                        // height: 24px;
+                    }
+                    .appmain-itemsDots {
+                        float: left;
+                        margin-right: 4px;
+                        margin-left: 4px;
+
+                        font-family: Mukta;
+                        font-style: normal;
+                        font-weight: bold;
+                        line-height: 1.3;
+                        // width: 44px;
+                        // height: 24px;
+                    }
+                    .appmain-itemsUploaded {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 2px;
+                        // width: 44px;
+                        // height: 6px;
+                    }
+                }
+            }
+
+            .appmain-more {
+                // padding-top: 20px;
+
+                button.more {
+                    width: 100%;
+                    height: 34px;
+                    outline: none;
+                    border: none;
+                    border-bottom: 4px solid rgba(0, 0, 0, 0.7);
+                    background: #c4c4c4;
+                }
+            }
+        }
+    }
+    .body-container.dark-mode{
+        background:$bg-dark-mode;
+
+        .appmain3 {
+            .appmain-content3 {
+                background: $bg-dark-grey;
+                .appmain-navigation {
+                    background: $bg-dark-grey;
+                    .menu {
+                        .menu-text{
+                            color: $white-text;
+                        }
+                    }
+                }
+                .appmain-items {
+                    .appmain-itemsBlock1 {
+                        .appmain-itemsTitleEpisode {
+                            color: $white-text;
+                        }
+                    }
+                    .appmain-itemsBlock2 {
+                        color: $white-text;
+                    }
+                }
+                
+                
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .body-container {
+        margin-top: 56px;
+        margin-bottom: 56px;
+        padding-top: 20px;
+        background: #ececec;
+
+        .appmain-content4 {
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 30px;
+            background: #fff;
+            border-radius: 2px;
+
+            .scroll-navigation {
+                overflow-x: auto;
+                background: #ffffff;
+                box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
+                white-space: nowrap;
+
+                .appmain-navigation {
+                    position: relative;
+                    display: inline-block;
+                    height: 50px;
+                    // background: #FFFFFF;
+                    // box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.25);
+
+                    .menu {
+                        width: 220px;
+                        position: relative;
+                        top: 50%;
+                        left: 50%;
+                        -ms-transform: translate(-50%, -50%);
+                        transform: translate(-50%, -50%);
+
+                        .menu-text {
+                            font-family: Mukta;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 18px;
+                            line-height: 100%;
+                            color: rgba(0, 0, 0, 0.75);
+                        }
+                    }
+                }
+                .active {
+                    border-bottom: 4px solid rgba(0, 0, 0, 0.75);
+                }
+            }
+
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            .scroll-navigation::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* Hide scrollbar for IE, Edge and Firefox */
+            .scroll-navigation {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none; /* Firefox */
+            }
+
+            .appmain-items {
+                padding: 8px;
+                // height: auto;
+
+                .appmain-ctitemsImg {
+                    width: 100%;
+                    height: 160px;
+                    background-color: #c4c4c4;
+                    background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                    background-size: 200px 100%;
+                    background-repeat: no-repeat;
+                    animation: loading 1.2s ease-in-out infinite;
+                }
+                .appmain-itemsImg {
+                    img {
+                        width: 100%;
+                        height: auto;
+                        max-height: 160px;
+                    }
+                }
+
+                .appmain-ctitemsBlock1 {
+                    padding: 4px;
+                    height: 50px;
+
+                    .appmain-ctitemsAnimeImg {
+                        float: left;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsTitleEpisode {
+                        float: left;
+                        margin-left: 6px;
+                        width: calc(100% - 42px);
+                        height: 36px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                }
+                .appmain-itemsBlock1 {
+                    padding: 4px;
+                    height: 76px;
+
+                    .appmain-itemsAnimeImg {
+                        img {
+                            float: left;
+                            // width: 36px;
+                            // height: 36px;
+                            border-radius: 50%;
+                            width: 100%;
+                            height: auto;
+                            max-width: 36px;
+                            max-height: 36px;
+                        }
+                    }
+                    .appmain-itemsTitleEpisode {
+                        float: left;
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+
+                        padding: 5px 5px 5px 6px;
+                        width: calc(100% - 36px);
+
+                        font-family: Mukta;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 14px;
+                        // text-align: justify;
+
+                        color: #000000;
+                    }
+                }
+
+                .appmain-ctitemsBlock2 {
+                    padding: 4px;
+                    height: 30px;
+
+                    .appmain-ctitemsAnimeTitle {
+                        float: left;
+                        margin-left: 42px;
+                        width: calc(100% - 30%);
+                        height: 24px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsViews {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 42px;
+                        width: 44px;
+                        height: 6px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                    .appmain-ctitemsUploaded {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 2px;
+                        width: 44px;
+                        height: 6px;
+                        background-color: #c4c4c4;
+                        background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                        background-size: 200px 100%;
+                        background-repeat: no-repeat;
+                        animation: loading 1.2s ease-in-out infinite;
+                    }
+                }
+                .appmain-itemsBlock2 {
+                    padding: 4px;
+                    height: 80px;
+
+                    .appmain-itemsAnimeTitle {
+                        float: left;
+                        margin-left: 42px;
+                        // width: 160px;
+                        width: calc(100% - 42px);
+
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 1; // ... on line 1
+                        -webkit-box-orient: vertical;
+                    }
+                    .appmain-itemsViews {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 42px;
+                        // width: 44px;
+                        // height: 24px;
+                    }
+                    .appmain-itemsDots {
+                        float: left;
+                        margin-right: 4px;
+                        margin-left: 4px;
+
+                        font-family: Mukta;
+                        font-style: normal;
+                        font-weight: bold;
+                        line-height: 1.3;
+                        // width: 44px;
+                        // height: 24px;
+                    }
+                    .appmain-itemsUploaded {
+                        float: left;
+                        margin-top: 2px;
+                        margin-left: 2px;
+                        // width: 44px;
+                        // height: 6px;
+                    }
+                }
+            }
+
+            .appmain-more {
+                // padding-top: 20px;
+
+                button.more {
+                    width: 100%;
+                    height: 34px;
+                    outline: none;
+                    border: none;
+                    border-bottom: 4px solid rgba(0, 0, 0, 0.7);
+                    background: #c4c4c4;
+                }
+            }
+        }
+    }
+    .body-container.dark-mode{
+        background:$bg-dark-mode;
+
+        .appmain4 {
+            .appmain-content4 {
+                background: $bg-dark-grey;
+                .appmain-navigation {
+                    background: $bg-dark-grey;
+                    .menu {
+                        .menu-text{
+                            color: $white-text;
+                        }
+                    }
+                }
+                .appmain-items {
+                    .appmain-itemsBlock1 {
+                        .appmain-itemsTitleEpisode {
+                            color: $white-text;
+                        }
+                    }
+                    .appmain-itemsBlock2 {
+                        color: $white-text;
+                    }
+                }
+                
+                
+            }
+        }
+        
+    }
+}

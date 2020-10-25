@@ -1,0 +1,1498 @@
+@keyframes loading {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+* {
+    //for col
+    box-sizing: border-box;
+}
+@import "../../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "../../../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+$bgNav-dark-mode: #555;
+$border-dark-mode: #4444446e;
+$white-text: #fff;
+$bg-tooltip: #828282;
+$bg-hover: #c4c4c4;
+$bg-hover-dark-mode: #828282;
+@media (min-width: 1025px) {
+    .nav-container {
+        position: fixed;
+        width: 100%;
+        height: 56px;
+        top: 0;
+        background: #ffffff;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        z-index: 1;
+
+        .nav-brand {
+            float: left;
+            padding: 10px 20px 10px 20px;
+
+            .ctlogo {
+                float: left;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            .logo {
+                float: left;
+                width: 36px;
+                height: 36px;
+            }
+
+            .ctbrand {
+                float: left;
+                margin: 5px;
+                width: 90px;
+                height: 26px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            .brand {
+                float: left;
+                padding: 5px;
+                font-family: Bangers;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 26px;
+                color: #000000;
+            }
+        }
+
+        .nav-search {
+            float: left;
+            padding: 10px 100px 10px 100px;
+            width: calc(100% - 30%);
+
+            .search-box {
+                float: left;
+                position: relative;
+                width: 100%;
+                height: 36px;
+                background: #fafafa;
+                // border: 1px solid rgba(0, 0, 0, 0.25);
+                // border-radius: 5px 0px 0px 5px;
+
+                input {
+                    width: 100%;
+                    height: 100%;
+                    // border: 1px solid rgba(0, 0, 0, 0.25);
+                    // border-radius: 5px 0px 0px 5px;
+                }
+            }
+
+            button.search {
+                float: left;
+                width: 52px;
+                height: 36px;
+                outline: none;
+                background: #eaeaea;
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                border-radius: 0px 5px 5px 0px;
+            }
+        }
+
+        .nav-menu {
+            float: right;
+            padding: 6px 20px 10px 20px;
+
+            .ctlogin {
+                float: right;
+                width: 80px;
+                height: 40px;
+                border-radius: 2px;
+                padding: 8px 5px 8px 5px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.login {
+                float: right;
+                background: #ffffff;
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                border-radius: 2px;
+                outline: none;
+                padding: 8px 5px 8px 5px;
+                font-family: Bangers;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 17px;
+                line-height: 18px;
+            }
+
+            .ctsetting {
+                float: right;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                margin: 8px 16px 8px 10px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.setting {
+                float: right;
+                background: none;
+                border: 0;
+                border-radius: 50%;
+                outline: none;
+                margin: 8px 16px 8px 10px;
+                position: relative;
+
+                .settingtooltip {
+                    visibility: hidden;
+                    position: absolute;
+                    width: 120px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-radius: 6px;
+                    z-index: 1;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+
+                .settingtooltip::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent #555;
+                }
+            }
+
+            button.setting:hover {
+                background: #c4c4c4;
+
+                .settingtooltip {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+
+            .ctcollection {
+                float: right;
+                width: 24px;
+                height: 24px;
+                margin: 8px 0 8px 0;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.collection {
+                float: right;
+                border: 0;
+                outline: none;
+                background: none;
+                margin: 8px 0 8px 0;
+                position: relative;
+
+                .collectiontooltip {
+                    visibility: hidden;
+                    position: absolute;
+                    width: 120px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-radius: 6px;
+                    z-index: 1;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+
+                .collectiontooltip::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent #555;
+                }
+            }
+
+            button.collection:hover {
+                .collectiontooltip {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .nav-container.dark-mode {
+        background: $bgNav-dark-mode;
+        .nav-brand {
+            .logo {
+                border-radius: 50%;
+                background-color: $white-text;
+            }
+            .brand {
+                color: $white-text;
+            }
+        }
+        .nav-search {
+            .search-box {
+                background: $bgNav-dark-mode;
+                input {
+                    padding-left: 10px;
+                    background: $border-dark-mode;
+                    border: 4px solid $border-dark-mode;
+                    color: $white-text;
+                }
+            }
+        }
+        .nav-menu {
+            button.login {
+                background: $bgNav-dark-mode;
+                color: $white-text;
+                border: 1px solid $white-text;
+            }
+
+            button.setting {
+                color: $white-text;
+                .settingtooltip {
+                    background-color: $bg-tooltip;
+                }
+                .settingtooltip::after {
+                    border-color: transparent transparent transparent $bg-tooltip;
+                }
+            }
+            button.setting:hover {
+                background: $bg-tooltip;
+            }
+            button.collection {
+                color: $white-text;
+                .collectiontooltip {
+                    background-color: $bg-tooltip;
+                }
+                .collectiontooltip::after {
+                    border-color: transparent transparent transparent $bg-tooltip;
+                }
+            }
+        }
+    }
+
+    .tooltip-left {
+        top: -5px;
+        bottom: auto;
+        right: 128%;
+    }
+
+
+    .menu-setting {
+        position: fixed;
+        background: #fff;
+        z-index: 2;
+        right: 10%;
+        padding: 10px 0 10px 0;
+
+        .menu {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 50px;
+
+            .text-tampilan::before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f042";
+                font-size: 22px;
+
+                position: absolute;
+                left: -30px;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-tampilan {
+                margin-left: 30px;
+                margin-right: 30px;
+
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-tampilan::after {
+                font-family: "Font Awesome 5 Free";
+                content: "\f105";
+                font-size: 22px;
+
+                position: absolute;
+                top: 50%;
+                right: -30px;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+        .menu:hover {
+            background: $bg-hover;
+        }
+    }
+    .hide-menu-setting {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 2;
+    }
+    .menu-setting.dark-mode {
+        background: $bgNav-dark-mode;
+        .menu {
+            .text-tampilan {
+                color: $white-text;
+            }
+        }
+        .menu:hover {
+            background: $bg-hover-dark-mode;
+        }
+    }
+
+    .menu-tampilan {
+        position: fixed;
+        background: #fff;
+        z-index: 2;
+        right: 10%;
+        padding: 10px 0 10px 0;
+
+        .menu-head {
+            display: block;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 44px;
+            border-bottom: 1px solid $border-dark-mode;
+
+            .icon {
+                cursor: pointer;
+                margin-right: 10px;
+            }
+        }
+        .menu {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 50px;
+
+            .text-gelap {
+                margin-left: 30px;
+                margin-right: 30px;
+
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-terang {
+                margin-left: 30px;
+                margin-right: 30px;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+        .menu:hover {
+            background: $bg-hover;
+        }
+    }
+    .hide-menu-tampilan {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 2;
+    }
+    .menu-tampilan.dark-mode {
+        background: $bgNav-dark-mode;
+        .menu-head {
+            color: $white-text;
+        }
+        .menu {
+            .text-gelap {
+                color: $white-text;
+            }
+            .text-terang {
+                color: $white-text;
+            }
+        }
+        .menu:hover {
+            background: $bg-hover-dark-mode;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .nav-container {
+        position: fixed;
+        width: 100%;
+        height: 56px;
+        top: 0;
+        background: #ffffff;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        z-index: 1;
+
+        .nav-brand {
+            float: left;
+            padding: 10px 20px 10px 20px;
+
+            .ctlogo {
+                float: left;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            .logo {
+                float: left;
+                width: 36px;
+                height: 36px;
+            }
+
+            .ctbrand {
+                float: left;
+                margin: 5px;
+                width: 90px;
+                height: 26px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            .brand {
+                float: left;
+                padding: 5px;
+                font-family: Bangers;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 26px;
+                color: #000000;
+            }
+        }
+
+        .nav-search {
+            display: none;
+        }
+
+        .nav-menu {
+            float: right;
+            padding: 6px 20px 10px 20px;
+
+            .ctlogin {
+                float: right;
+                width: 80px;
+                height: 40px;
+                border-radius: 2px;
+                padding: 8px 5px 8px 5px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.login {
+                float: right;
+                background: #ffffff;
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                border-radius: 2px;
+                outline: none;
+                padding: 8px 5px 8px 5px;
+                font-family: Bangers;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 17px;
+                line-height: 18px;
+            }
+
+            .ctsetting {
+                float: right;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                margin: 8px 16px 8px 10px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.setting {
+                float: right;
+                background: none;
+                border: 0;
+                border-radius: 50%;
+                outline: none;
+                margin: 8px 16px 8px 10px;
+                position: relative;
+
+                .settingtooltip {
+                    visibility: hidden;
+                    position: absolute;
+                    width: 120px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-radius: 6px;
+                    z-index: 1;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+
+                .settingtooltip::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent #555;
+                }
+            }
+
+            button.setting:hover {
+                background: #c4c4c4;
+
+                .settingtooltip {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+
+            .ctcollection {
+                display: none;
+            }
+
+            button.collection {
+                display: none;
+            }
+        }
+    }
+    .nav-container.dark-mode {
+        background: $bgNav-dark-mode;
+        .nav-brand {
+            .logo {
+                border-radius: 50%;
+                background-color: $white-text;
+            }
+            .brand {
+                color: $white-text;
+            }
+        }
+        .nav-menu {
+            button.login {
+                background: $bgNav-dark-mode;
+                color: $white-text;
+                border: 1px solid $white-text;
+            }
+
+            button.setting {
+                color: $white-text;
+                .settingtooltip {
+                    background-color: $bg-tooltip;
+                }
+                .settingtooltip::after {
+                    border-color: transparent transparent transparent $bg-tooltip;
+                }
+            }
+            button.setting:hover {
+                background: $bg-tooltip;
+            }
+        }
+    }
+    
+    .tooltip-left {
+        top: -5px;
+        bottom: auto;
+        right: 128%;
+    }
+
+    .menu-setting {
+        position: fixed;
+        background: #fff;
+        z-index: 2;
+        right: 10%;
+        padding: 10px 0 10px 0;
+
+        .menu {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 50px;
+
+            .text-tampilan::before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f042";
+                font-size: 22px;
+
+                position: absolute;
+                left: -30px;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-tampilan {
+                margin-left: 30px;
+                margin-right: 30px;
+
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-tampilan::after {
+                font-family: "Font Awesome 5 Free";
+                content: "\f105";
+                font-size: 22px;
+
+                position: absolute;
+                top: 50%;
+                right: -30px;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+        .menu:hover {
+            background: $bg-hover;
+        }
+    }
+    .hide-menu-setting {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 2;
+    }
+    .menu-setting.dark-mode {
+        background: $bgNav-dark-mode;
+        .menu {
+            .text-tampilan {
+                color: $white-text;
+            }
+        }
+        .menu:hover {
+            background: $bg-hover-dark-mode;
+        }
+    }
+
+    .menu-tampilan {
+        position: fixed;
+        background: #fff;
+        z-index: 2;
+        right: 10%;
+        padding: 10px 0 10px 0;
+
+        .menu-head {
+            display: block;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 44px;
+            border-bottom: 1px solid $border-dark-mode;
+
+            .icon {
+                cursor: pointer;
+                margin-right: 10px;
+            }
+        }
+        .menu {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 50px;
+
+            .text-gelap {
+                margin-left: 30px;
+                margin-right: 30px;
+
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-terang {
+                margin-left: 30px;
+                margin-right: 30px;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+        .menu:hover {
+            background: $bg-hover;
+        }
+    }
+    .hide-menu-tampilan {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 2;
+    }
+    .menu-tampilan.dark-mode {
+        background: $bgNav-dark-mode;
+        .menu-head {
+            color: $white-text;
+        }
+        .menu {
+            .text-gelap {
+                color: $white-text;
+            }
+            .text-terang {
+                color: $white-text;
+            }
+        }
+        .menu:hover {
+            background: $bg-hover-dark-mode;
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .nav-container {
+        position: fixed;
+        width: 100%;
+        height: 56px;
+        top: 0;
+        background: #ffffff;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        z-index: 1;
+
+        .nav-brand {
+            float: left;
+            padding: 10px 20px 10px 20px;
+
+            .ctlogo {
+                float: left;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            .logo {
+                float: left;
+                width: 36px;
+                height: 36px;
+            }
+
+            .ctbrand {
+                float: left;
+                margin: 5px;
+                width: 90px;
+                height: 26px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            .brand {
+                float: left;
+                padding: 5px;
+                font-family: Bangers;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 26px;
+                color: #000000;
+            }
+        }
+
+        .nav-search {
+            display: none;
+        }
+
+        .nav-menu {
+            float: right;
+            padding: 6px 20px 10px 20px;
+
+            .ctlogin {
+                float: right;
+                width: 80px;
+                height: 40px;
+                border-radius: 2px;
+                padding: 8px 5px 8px 5px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.login {
+                float: right;
+                background: #ffffff;
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                border-radius: 2px;
+                outline: none;
+                padding: 8px 5px 8px 5px;
+                font-family: Bangers;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 17px;
+                line-height: 18px;
+            }
+
+            .ctsetting {
+                float: right;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                margin: 8px 16px 8px 10px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.setting {
+                float: right;
+                background: none;
+                border: 0;
+                border-radius: 50%;
+                outline: none;
+                margin: 8px 16px 8px 10px;
+                position: relative;
+
+                .settingtooltip {
+                    visibility: hidden;
+                    position: absolute;
+                    width: 120px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-radius: 6px;
+                    z-index: 1;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+
+                .settingtooltip::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent #555;
+                }
+            }
+
+            button.setting:hover {
+                background: #c4c4c4;
+
+                .settingtooltip {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+
+            .ctcollection {
+                display: none;
+            }
+
+            button.collection {
+                display: none;
+            }
+        }
+    }
+    .nav-container.dark-mode {
+        background: $bgNav-dark-mode;
+        .nav-brand {
+            .logo {
+                border-radius: 50%;
+                background-color: $white-text;
+            }
+            .brand {
+                color: $white-text;
+            }
+        }
+        .nav-menu {
+            button.login {
+                background: $bgNav-dark-mode;
+                color: $white-text;
+                border: 1px solid $white-text;
+            }
+
+            button.setting {
+                color: $white-text;
+                .settingtooltip {
+                    background-color: $bg-tooltip;
+                }
+                .settingtooltip::after {
+                    border-color: transparent transparent transparent $bg-tooltip;
+                }
+            }
+            button.setting:hover {
+                background: $bg-tooltip;
+            }
+        }
+    }
+
+    .tooltip-left {
+        top: -5px;
+        bottom: auto;
+        right: 128%;
+    }
+
+    .menu-setting {
+        position: fixed;
+        background: #fff;
+        z-index: 2;
+        right: 10%;
+        padding: 10px 0 10px 0;
+
+        .menu {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 50px;
+
+            .text-tampilan::before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f042";
+                font-size: 22px;
+
+                position: absolute;
+                left: -30px;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-tampilan {
+                margin-left: 30px;
+                margin-right: 30px;
+
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-tampilan::after {
+                font-family: "Font Awesome 5 Free";
+                content: "\f105";
+                font-size: 22px;
+
+                position: absolute;
+                top: 50%;
+                right: -30px;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+        .menu:hover {
+            background: $bg-hover;
+        }
+    }
+    .hide-menu-setting {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 2;
+    }
+    .menu-setting.dark-mode {
+        background: $bgNav-dark-mode;
+        .menu {
+            .text-tampilan {
+                color: $white-text;
+            }
+        }
+        .menu:hover {
+            background: $bg-hover-dark-mode;
+        }
+    }
+
+    .menu-tampilan {
+        position: fixed;
+        background: #fff;
+        z-index: 2;
+        right: 10%;
+        padding: 10px 0 10px 0;
+
+        .menu-head {
+            display: block;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 44px;
+            border-bottom: 1px solid $border-dark-mode;
+
+            .icon {
+                cursor: pointer;
+                margin-right: 10px;
+            }
+        }
+        .menu {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 50px;
+
+            .text-gelap {
+                margin-left: 30px;
+                margin-right: 30px;
+
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-terang {
+                margin-left: 30px;
+                margin-right: 30px;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+        .menu:hover {
+            background: $bg-hover;
+        }
+    }
+    .hide-menu-tampilan {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 2;
+    }
+    .menu-tampilan.dark-mode {
+        background: $bgNav-dark-mode;
+        .menu-head {
+            color: $white-text;
+        }
+        .menu {
+            .text-gelap {
+                color: $white-text;
+            }
+            .text-terang {
+                color: $white-text;
+            }
+        }
+        .menu:hover {
+            background: $bg-hover-dark-mode;
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .nav-container {
+        position: fixed;
+        width: 100%;
+        height: 56px;
+        top: 0;
+        background: #ffffff;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        z-index: 1;
+
+        .nav-brand {
+            float: left;
+            padding: 10px;
+
+            .ctlogo {
+                float: left;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            .logo {
+                float: left;
+                width: 36px;
+                height: 36px;
+            }
+
+            .ctbrand {
+                float: left;
+                margin: 5px;
+                width: 90px;
+                height: 26px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            .brand {
+                float: left;
+                padding: 5px;
+                font-family: Bangers;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 26px;
+                color: #000000;
+            }
+        }
+
+        .nav-search {
+            display: none;
+        }
+
+        .nav-menu {
+            float: right;
+            padding: 8px 10px 8px 10px;
+
+            .ctlogin {
+                float: right;
+                width: 80px;
+                height: 40px;
+                border-radius: 2px;
+                padding: 8px 5px 8px 5px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.login {
+                float: right;
+                background: #ffffff;
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                border-radius: 2px;
+                outline: none;
+                padding: 8px 5px 8px 5px;
+                font-family: Bangers;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 17px;
+                line-height: 18px;
+            }
+
+            .ctsetting {
+                float: right;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                margin: 8px 16px 8px 10px;
+                background-color: #c4c4c4;
+                background-image: linear-gradient(90deg, #c4c4c4, #f5f5f5, #c4c4c4);
+                background-size: 200px 100%;
+                background-repeat: no-repeat;
+                animation: loading 1.2s ease-in-out infinite;
+            }
+
+            button.setting {
+                float: right;
+                background: none;
+                border: 0;
+                border-radius: 50%;
+                outline: none;
+                margin: 8px 16px 8px 10px;
+                position: relative;
+
+                .settingtooltip {
+                    visibility: hidden;
+                    position: absolute;
+                    width: 120px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-radius: 6px;
+                    z-index: 1;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+
+                .settingtooltip::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent #555;
+                }
+            }
+
+            button.setting:hover {
+                background: #c4c4c4;
+
+                .settingtooltip {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+
+            .ctcollection {
+                display: none;
+            }
+
+            button.collection {
+                display: none;
+            }
+        }
+    }
+    .nav-container.dark-mode {
+        background: $bgNav-dark-mode;
+        .nav-brand {
+            .logo {
+                border-radius: 50%;
+                background-color: $white-text;
+            }
+            .brand {
+                color: $white-text;
+            }
+        }
+        .nav-menu {
+            button.login {
+                background: $bgNav-dark-mode;
+                color: $white-text;
+                border: 1px solid $white-text;
+            }
+
+            button.setting {
+                color: $white-text;
+                .settingtooltip {
+                    background-color: $bg-tooltip;
+                }
+                .settingtooltip::after {
+                    border-color: transparent transparent transparent $bg-tooltip;
+                }
+            }
+            button.setting:hover {
+                background: $bg-tooltip;
+            }
+        }
+    }
+
+    .tooltip-left {
+        top: -5px;
+        bottom: auto;
+        right: 128%;
+    }
+
+    .menu-setting {
+        position: fixed;
+        background: #fff;
+        z-index: 2;
+        right: 10%;
+        padding: 10px 0 10px 0;
+
+        .menu {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 50px;
+
+            .text-tampilan::before {
+                font-family: "Font Awesome 5 Free";
+                content: "\f042";
+                font-size: 22px;
+
+                position: absolute;
+                left: -30px;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-tampilan {
+                margin-left: 30px;
+                margin-right: 30px;
+
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-tampilan::after {
+                font-family: "Font Awesome 5 Free";
+                content: "\f105";
+                font-size: 22px;
+
+                position: absolute;
+                top: 50%;
+                right: -30px;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+        .menu:hover {
+            background: $bg-hover;
+        }
+    }
+    .hide-menu-setting {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 2;
+    }
+    .menu-setting.dark-mode {
+        background: $bgNav-dark-mode;
+        .menu {
+            .text-tampilan {
+                color: $white-text;
+            }
+        }
+        .menu:hover {
+            background: $bg-hover-dark-mode;
+        }
+    }
+
+    .menu-tampilan {
+        position: fixed;
+        background: #fff;
+        z-index: 2;
+        right: 10%;
+        padding: 10px 0 10px 0;
+
+        .menu-head {
+            display: block;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 44px;
+            border-bottom: 1px solid $border-dark-mode;
+
+            .icon {
+                cursor: pointer;
+                margin-right: 10px;
+            }
+        }
+        .menu {
+            display: block;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            width: 200px;
+            height: 50px;
+
+            .text-gelap {
+                margin-left: 30px;
+                margin-right: 30px;
+
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .text-terang {
+                margin-left: 30px;
+                margin-right: 30px;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+        }
+        .menu:hover {
+            background: $bg-hover;
+        }
+    }
+    .hide-menu-tampilan {
+        height: 100vh;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 2;
+    }
+    .menu-tampilan.dark-mode {
+        background: $bgNav-dark-mode;
+        .menu-head {
+            color: $white-text;
+        }
+        .menu {
+            .text-gelap {
+                color: $white-text;
+            }
+            .text-terang {
+                color: $white-text;
+            }
+        }
+        .menu:hover {
+            background: $bg-hover-dark-mode;
+        }
+    }
+}
