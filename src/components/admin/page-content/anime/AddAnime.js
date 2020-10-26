@@ -8,6 +8,8 @@ import $ from 'jquery';
 
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2';
+ 
+
 
 
 
@@ -74,17 +76,32 @@ class AddAnime extends Component {
                 synopsis: '',
                 
                 producers: [],
+                optionsProducers: [],
+                selectedProducers: [],
+                
                 licensors: [],
+                optionsLicensors: [],
+                selectedLicensors: [],
+
                 studios: [],
+                optionsStudios: [],
+                selectedStudios: [],
+
                 genres: [],
+                optionsGenres: [],
+                selectedGenres: [],
                 
                 
             },
+            loadingGet: false,
+            loadingTranslate: false,
         }
         this.onChange = this.onChange.bind(this);
         this.getJikan = this.getJikan.bind(this);
         this.addAnimeChange = this.addAnimeChange.bind(this);
         this.addAnimeSubmit = this.addAnimeSubmit.bind(this);
+
+        this.translate = this.translate.bind(this);
     }
 
     
@@ -96,6 +113,50 @@ class AddAnime extends Component {
     getJikan(e){
         let id_mal = this.state.idMal;
         console.log(id_mal)
+        this.setState({
+            dataJikan: {
+                title: '',
+                url: '',
+
+                title_english: '',
+                title_japanese: '',
+                title_synonyms: [],
+
+                type: '',
+                selectedType: '',
+                episodes: '',
+                status: '',
+                selectedStatus: '',
+                aired: '',
+
+                premiered: '',
+                broadcast: '',
+                source: '',
+                duration: '',
+
+                rating: '',
+                score: '',
+
+                synopsis: '',
+                
+                producers: [],
+                optionsProducers: [],
+                selectedProducers: [],
+                
+                licensors: [],
+                optionsLicensors: [],
+                selectedLicensors: [],
+
+                studios: [],
+                optionsStudios: [],
+                selectedStudios: [],
+
+                genres: [],
+                optionsGenres: [],
+                selectedGenres: [],
+            },
+            loadingGet: true,
+        })
         axios.get(uAPIlocal+'/api/v1/jikan/findanime/'+id_mal)
         .then(function(response) {
             return response.data;
@@ -103,19 +164,168 @@ class AddAnime extends Component {
         .then(response => {
             var results = response.results;
             var cekProducer = results.producers.length;
-            
+            var cekLicensor = results.licensors.length;
+            var cekStudio = results.studios.length;
+            var cekGenre = results.genres.length;
+
             if (cekProducer > 0 ) {
+                const Obj = [];
+                this.state.dataJikan.selectedProducers.forEach(el => {
+                    Obj.push(
+                        el.value,
+                    )
+                });
+                const Obj2 = [];
+                this.state.dataJikan.optionsProducers.forEach(el => {
+                    Obj2.push(
+                        el.value,
+                    )
+                });
+                results.producers.forEach(el => {
+                    const dataProducer = {value: el.name, label: el.name};
+                    // console.log(dataProducer.value)
+                    const onTheList = Obj.includes(dataProducer.value);
+                    const onTheList2 = Obj2.includes(dataProducer.value);
+                    if (!onTheList) {
+                        this.setState({
+                            dataJikan: {
+                                ...this.state.dataJikan,
+                                selectedProducers: [...this.state.dataJikan.selectedProducers, dataProducer],
+                            }
+                        })
+                    }
+                    if (!onTheList2) {
+                        this.setState({
+                            dataJikan: {
+                                ...this.state.dataJikan,
+                                optionsProducers: [...this.state.dataJikan.optionsProducers, dataProducer],
+                            }
+                        })
+                    }
+                });
                 
             }
+            if (cekLicensor > 0 ) {
+                const Obj = [];
+                this.state.dataJikan.selectedLicensors.forEach(el => {
+                    Obj.push(
+                        el.value,
+                    )
+                });
+                const Obj2 = [];
+                this.state.dataJikan.optionsLicensors.forEach(el => {
+                    Obj2.push(
+                        el.value,
+                    )
+                });
+                results.licensors.forEach(el => {
+                    const dataLicensor = {value: el.name, label: el.name};
+                    // console.log(dataProducer.value)
+                    const onTheList = Obj.includes(dataLicensor.value);
+                    const onTheList2 = Obj2.includes(dataLicensor.value);
+                    if (!onTheList) {
+                        this.setState({
+                            dataJikan: {
+                                ...this.state.dataJikan,
+                                selectedLicensors: [...this.state.dataJikan.selectedLicensors, dataLicensor],
+                            }
+                        })
+                    }
+                    if (!onTheList2) {
+                        this.setState({
+                            dataJikan: {
+                                ...this.state.dataJikan,
+                                optionsLicensors: [...this.state.dataJikan.optionsLicensors, dataLicensor],
+                            }
+                        })
+                    }
+                });
+                
+            }
+            if (cekStudio > 0 ) {
+                const Obj = [];
+                this.state.dataJikan.selectedStudios.forEach(el => {
+                    Obj.push(
+                        el.value,
+                    )
+                });
+                const Obj2 = [];
+                this.state.dataJikan.optionsStudios.forEach(el => {
+                    Obj2.push(
+                        el.value,
+                    )
+                });
+                results.studios.forEach(el => {
+                    const dataStudio = {value: el.name, label: el.name};
+                    // console.log(dataProducer.value)
+                    const onTheList = Obj.includes(dataStudio.value);
+                    const onTheList2 = Obj2.includes(dataStudio.value);
+                    if (!onTheList) {
+                        this.setState({
+                            dataJikan: {
+                                ...this.state.dataJikan,
+                                selectedStudios: [...this.state.dataJikan.selectedStudios, dataStudio],
+                            }
+                        })
+                    }
+                    if (!onTheList2) {
+                        this.setState({
+                            dataJikan: {
+                                ...this.state.dataJikan,
+                                optionsStudios: [...this.state.dataJikan.optionsStudios, dataStudio],
+                            }
+                        })
+                    }
+                });
+                
+            }
+            if (cekGenre > 0 ) {
+                const Obj = [];
+                this.state.dataJikan.selectedGenres.forEach(el => {
+                    Obj.push(
+                        el.value,
+                    )
+                });
+                const Obj2 = [];
+                this.state.dataJikan.optionsGenres.forEach(el => {
+                    Obj2.push(
+                        el.value,
+                    )
+                });
+                results.genres.forEach(el => {
+                    const dataGenre = {value: el.name, label: el.name};
+                    // console.log(dataProducer.value)
+                    const onTheList = Obj.includes(dataGenre.value);
+                    const onTheList2 = Obj2.includes(dataGenre.value);
+                    if (!onTheList) {
+                        this.setState({
+                            dataJikan: {
+                                ...this.state.dataJikan,
+                                selectedGenres: [...this.state.dataJikan.selectedGenres, dataGenre],
+                            }
+                        })
+                    }
+                    if (!onTheList2) {
+                        this.setState({
+                            dataJikan: {
+                                ...this.state.dataJikan,
+                                optionsGenres: [...this.state.dataJikan.optionsGenres, dataGenre],
+                            }
+                        })
+                    }
+                });
+                
+            }
+            
             this.setState({
                 dataJikan: {
                     ...this.state.dataJikan,
                     title: results.title,
                     url: convert_seo(results.title),
 
-                    title_english: results.title_english,
-                    title_japanese: results.title_japanese,
-                    title_synonyms: results.title_synonyms,
+                    title_english: results.title_english===null ? '':results.title_english,
+                    title_japanese: results.title_japanese===null ? '':results.title_japanese,
+                    title_synonyms: results.title_synonyms===null ? '':results.title_synonyms,
 
                     type: results.type,
                     selectedType: {value: results.type, label: results.type},
@@ -138,7 +348,8 @@ class AddAnime extends Component {
                     licensors: results.licensors,
                     studios: results.studios,
                     genres: results.genres,
-                }
+                },
+                loadingGet: false,
             },()=>console.log(this.state.dataJikan))
         })
         .catch(function (error) {
@@ -146,8 +357,31 @@ class AddAnime extends Component {
         });
     }
 
+    translate(){
+        this.setState({loadingTranslate: true})
+        axios.post(uAPIlocal+'/api/v1/translate', {
+            translate: this.state.dataJikan.synopsis
+        })
+        .then(response => {
+            console.log(response)
+            return response.data;
+            
+        })
+        .then(JsonData => {
+            this.setState({
+                dataJikan: {
+                    ...this.state.dataJikan,
+                    synopsis: JsonData.results
+                },
+                loadingTranslate: false
+            })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
     componentDidMount(){
-       
     }
 
     addAnimeChange(e) {
@@ -161,34 +395,35 @@ class AddAnime extends Component {
 
     addAnimeSubmit(e){
         e.preventDefault();
-        Swal.fire({
-            title: 'Are you sure?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes!',
-            allowOutsideClick: false,
-            showLoaderOnConfirm: true,
-            preConfirm: () => {
-                return axios.post(uAPIlocal+'/api/v1/genrelist',{
-                    genre: this.state.addGenre.genre,
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    Swal.fire('Oops...', 'Something went wrong!', 'error');
-                });
-            }
-        }).then((result) => {
-            if (result.value) {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Success tambah genre',
-                    icon: 'success',
-                    allowOutsideClick: false,
-                }).then(() => this.setState({ redirect: true }))
-            }
-        })
+        console.log(this.state.dataJikan)
+        // Swal.fire({
+        //     title: 'Are you sure?',
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'Yes!',
+        //     allowOutsideClick: false,
+        //     showLoaderOnConfirm: true,
+        //     preConfirm: () => {
+        //         return axios.post(uAPIlocal+'/api/v1/animelist',{
+        //             // anime: this.state.addGenre.genre,
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //             Swal.fire('Oops...', 'Something went wrong!', 'error');
+        //         });
+        //     }
+        // }).then((result) => {
+        //     if (result.value) {
+        //         Swal.fire({
+        //             title: 'Success!',
+        //             text: 'Success tambah anime',
+        //             icon: 'success',
+        //             allowOutsideClick: false,
+        //         }).then(() => this.setState({ redirect: true }))
+        //     }
+        // })
     }
     optionsType = [
         { value: 'Tv', label: 'Tv' },
@@ -197,12 +432,12 @@ class AddAnime extends Component {
         { value: 'ONA', label: 'ONA' },
         { value: 'Special', label: 'Special' },
     ]
-    typeChange = selectedType => {
+    typeChange = selected => {
         this.setState({ 
             dataJikan:{
                 ...this.state.dataJikan,
-                type: selectedType.value,
-                selectedType: selectedType,
+                type: selected.value,
+                selectedType: selected,
             }
         },()=>console.log(this.state.dataJikan));
     };
@@ -210,18 +445,54 @@ class AddAnime extends Component {
         { value: 'Finished Airing', label: 'Finished Airing' },
         { value: 'Currently Airing', label: 'Currently Airing' },
     ]
-    statusChange = selectedStatus => {
+    statusChange = selected => {
         this.setState({ 
             dataJikan:{
                 ...this.state.dataJikan,
-                type: selectedStatus.value,
-                selectedStatus: selectedStatus,
+                type: selected.value,
+                selectedStatus: selected,
+            }
+        },()=>console.log(this.state.dataJikan));
+    };
+    producersChange = selected => {
+        this.setState({ 
+            dataJikan:{
+                ...this.state.dataJikan,
+                producers: selected.value,
+                selectedProducers: selected,
+            }
+        },()=>console.log(this.state.dataJikan));
+    };
+    licensorsChange = selected => {
+        this.setState({ 
+            dataJikan:{
+                ...this.state.dataJikan,
+                licensors: selected.value,
+                selectedLicensors: selected,
+            }
+        },()=>console.log(this.state.dataJikan));
+    };
+    studiosChange = selected => {
+        this.setState({ 
+            dataJikan:{
+                ...this.state.dataJikan,
+                studios: selected.value,
+                selectedStudios: selected,
+            }
+        },()=>console.log(this.state.dataJikan));
+    };
+    genresChange = selected => {
+        this.setState({ 
+            dataJikan:{
+                ...this.state.dataJikan,
+                genres: selected.value,
+                selectedGenres: selected,
             }
         },()=>console.log(this.state.dataJikan));
     };
     render() {
         if (this.state.redirect) {
-            return (<Redirect to="/admin/genre" />)
+            return (<Redirect to="/admin/anime" />)
         }
         return (
             <div>
@@ -229,10 +500,10 @@ class AddAnime extends Component {
                     <div className="container-fluid">
                         <div className="card">
                             <div className="card-header">
-                                <h3 className="card-title">Tambah Genre</h3>
+                                <h3 className="card-title">Tambah Anime</h3>
                             </div>
                             <div className="card-body">
-                                <form onSubmit={e => this.addGenreSubmit(e)} className="form-horizontal" style={{padding:"10px"}}>
+                                <form onSubmit={e => this.addAnimeSubmit(e)} className="form-horizontal" style={{padding:"10px"}}>
                                     <div className="form-group">
                                         <label>ID MAL (MyAnimeList)</label>
                                         <div className="input-group">
@@ -243,6 +514,10 @@ class AddAnime extends Component {
                                                 <FontAwesomeIcon icon={faSearch}/> Get
                                                 </button>
                                             </div>
+                                            {
+                                                this.state.loadingGet ? (<div style={{lineHeight: "2.3", marginLeft: "10px"}}>Loading ...</div>):null
+                                            }
+                                            
                                         </div>
                                     </div>
                                     <div className="form-group">
@@ -277,18 +552,10 @@ class AddAnime extends Component {
                                             <label>Type</label>
                                             <Select
                                                 placeholder='Pilih Type'
-                                                // defaultValue={this.state.dataJikan.type}
                                                 value={this.state.dataJikan.selectedType}
                                                 onChange={this.typeChange}
                                                 options={this.optionsType}
                                             />
-                                            {/* <select className="form-control select2" name="type" value={this.state.dataJikan.type} onChange={this.addAnimeChange} required>
-                                                <option value="Tv">Tv</option>
-                                                <option value="Movie">Movie</option>
-                                                <option value="OVA">OVA</option>
-                                                <option value="ONA">ONA</option>
-                                                <option value="Special">Special</option>
-                                            </select> */}
                                         </div>
 
                                         <div className="form-group col-sm-3">
@@ -305,10 +572,6 @@ class AddAnime extends Component {
                                                 onChange={this.statusChange}
                                                 options={this.optionsStatus}
                                             />
-                                            {/* <select className="form-control select2" name="status" value={this.state.dataJikan.status} onChange={this.addAnimeChange} required>
-                                                <option value="Finished Airing">Finished Airing</option>
-                                                <option value="Currently Airing">Currently Airing</option>
-                                            </select> */}
                                         </div>
 
                                         <div className="form-group col-sm-3">
@@ -356,32 +619,57 @@ class AddAnime extends Component {
                                             <label>Producers</label>
                                             <Select
                                                 placeholder='Pilih Producers'
-                                                // value={this.state.dataJikan.selectedProducers}
-                                                onChange={this.kategoriChange}
-                                                options={this.state.kategoriList}
+                                                value={this.state.dataJikan.selectedProducers}
+                                                onChange={this.producersChange}
+                                                options={this.state.dataJikan.optionsProducers}
                                                 isMulti
                                             />
-                                            {/* <select className="form-control select2" name="producers" multiple={true}  value={this.state.dataJikan.producers} onChange={this.addAnimeChange} required>
-                                                <option value="Tv">Tv</option>
-                                                <option value="Movie">Movie</option>
-                                                <option value="OVA">OVA</option>
-                                                <option value="ONA">ONA</option>
-                                                <option value="Special">Special</option>
-                                            </select> */}
                                         </div>
-                                        
-
-                                        {/* <div className="form-group col-sm-3">
-                                            <label>Status</label>
-                                            <select className="form-control select2" name="status" value={this.state.dataJikan.status} onChange={this.addAnimeChange} required>
-                                                <option value="Finished Airing">Finished Airing</option>
-                                                <option value="Currently Airing">Currently Airing</option>
-                                            </select>
-                                        </div> */}
+                                        <div className="form-group col-sm-3">
+                                            <label>Licensors</label>
+                                            <Select
+                                                placeholder='Pilih Licensors'
+                                                value={this.state.dataJikan.selectedLicensors}
+                                                onChange={this.licensorsChange}
+                                                options={this.state.dataJikan.optionsLicensors}
+                                                isMulti
+                                            />
+                                        </div>
+                                        <div className="form-group col-sm-3">
+                                            <label>Studios</label>
+                                            <Select
+                                                placeholder='Pilih Studios'
+                                                value={this.state.dataJikan.selectedStudios}
+                                                onChange={this.studiosChange}
+                                                options={this.state.dataJikan.optionsStudios}
+                                                isMulti
+                                            />
+                                        </div>
+                                        <div className="form-group col-sm-3">
+                                            <label>Genres</label>
+                                            <Select
+                                                placeholder='Pilih Genres'
+                                                value={this.state.dataJikan.selectedGenres}
+                                                onChange={this.genresChange}
+                                                options={this.state.dataJikan.optionsGenres}
+                                                isMulti
+                                            />
+                                        </div>
                                     </div>
 
                                     <div className="form-group">
-                                        <label>Deskripsi</label>
+                                        
+                                        <div className="input-group">
+                                            <label>Deskripsi</label>
+                                            <div className="input-group-btn" style={{marginLeft:'10px'}}>
+                                                <button type="button" className="btn btn-default" onClick={this.translate}>Translate</button>
+                                            </div>
+                                            {
+                                                this.state.loadingTranslate ? (<div style={{lineHeight: "2.3", marginLeft: "10px"}}>Loading ...</div>):null
+                                            }
+                                            
+                                        </div>
+                                        
                                         <textarea name="synopsis" className="form-control" value={this.state.dataJikan.synopsis} onChange={this.addAnimeChange} rows='9' required/>
                                     </div>
 
