@@ -10,6 +10,7 @@ import $ from 'jquery';
 import Swal from 'sweetalert2';
 
 
+
 const uAPIlocal = 'http://'+window.location.hostname+':8080';
 
 function BtnBack() {
@@ -146,6 +147,7 @@ class AddAnime extends Component {
     }
 
     componentDidMount(){
+       
     }
 
     addAnimeChange(e) {
