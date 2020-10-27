@@ -117,11 +117,17 @@ class Datatables extends Component {
     componentDidMount() {
         $('#genrelist').DataTable( {
             order: [[ 0, "desc" ]],
-            ajax: uAPIlocal+"/api/v1/dt/genrelist",
+            processing: true,
+            serverSide: true,
+            deferRender: true,
+            ajax: {
+                url: uAPIlocal+"/api/v1/dt/genrelist",
+                type: 'POST'
+            },
             columns: [
-                {title:"No", width:"50px"},
+                // {title:"No", width:"50px", orderable: false},
                 {title:"Nama Genre"},
-                {title:"Aksi", width:"150px"},
+                {title:"Aksi", width:"150px", orderable: false},
             ],
             columnDefs: [ {
                 targets: -1,
@@ -132,18 +138,24 @@ class Datatables extends Component {
                         {console.log('rowData: '+rowData)}
                         {console.log('row: '+row)}
                         {console.log('col: '+col)} */}
-                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editGenre(rowData[2])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteGenre(rowData[2], rowData[1])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
+                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editGenre(rowData[1])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteGenre(rowData[1], rowData[0])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
                         </BrowserRouter>, td),
             } ]
         } );
 
         $('#producerlist').DataTable( {
             order: [[ 0, "desc" ]],
-            ajax: uAPIlocal+"/api/v1/dt/producerlist",
+            processing: true,
+            serverSide: true,
+            deferRender: true,
+            ajax: {
+                url: uAPIlocal+"/api/v1/dt/producerlist",
+                type: 'POST'
+            },
             columns: [
-                {title:"No", width:"50px"},
+                // {title:"No", width:"50px"},
                 {title:"Nama Producer"},
-                {title:"Aksi", width:"150px"},
+                {title:"Aksi", width:"150px", orderable: false},
             ],
             columnDefs: [ {
                 targets: -1,
@@ -154,7 +166,7 @@ class Datatables extends Component {
                         {console.log('rowData: '+rowData)}
                         {console.log('row: '+row)}
                         {console.log('col: '+col)} */}
-                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editProducer(rowData[2])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteProducer(rowData[2], rowData[1])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
+                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editProducer(rowData[1])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteProducer(rowData[1], rowData[0])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
                         </BrowserRouter>, td),
             } ]
         } );
