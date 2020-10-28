@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave, faArrowLeft, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faArrowLeft, faSearch, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Select from 'react-select';
 import $ from 'jquery';
@@ -49,8 +49,14 @@ class AddAnime extends Component {
         super(props);
         this.state = {
             redirect : false,
-            idMal: '',
+            
+            gambar_anime: {
+                icon: true,
+                preview: '',
+                raw: '',
+            },
             dataJikan: {
+                idMal: '',
                 title: '',
                 url: '',
 
@@ -96,25 +102,53 @@ class AddAnime extends Component {
             loadingGet: false,
             loadingTranslate: false,
         }
-        this.onChange = this.onChange.bind(this);
         this.getJikan = this.getJikan.bind(this);
         this.addAnimeChange = this.addAnimeChange.bind(this);
         this.addAnimeSubmit = this.addAnimeSubmit.bind(this);
-
         this.translate = this.translate.bind(this);
+
+        this.gambarAnimeInput = React.createRef();
+        this.gambarAnimeReset = this.gambarAnimeReset.bind(this);
+        this.gambarAnimeChange = this.gambarAnimeChange.bind(this);
+        this.gambarAnimeAdd = this.gambarAnimeAdd.bind(this);
+        this.gambarAnimeDelete = this.gambarAnimeDelete.bind(this);
     }
 
-    
-    onChange(e){
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+    gambarAnimeReset(e){
+        e.target.value=''
     }
+    gambarAnimeChange(e){
+        if (e.target.files && e.target.files[0]) {
+          let img = e.target.files[0];
+          this.setState({
+            gambar_anime: {
+                icon: false,
+                //show imagenya
+                preview: URL.createObjectURL(img),
+
+                //show data imagenya
+                raw: img,
+            }
+          });
+        }
+    };
+    gambarAnimeAdd(e){
+        this.gambarAnimeInput.current.click();
+    }
+    gambarAnimeDelete(e){
+        this.setState({
+            gambar_anime: {
+                icon: true,
+                preview: '',
+                raw: '',
+            }
+        });
+    }
+    
     getJikan(e){
-        let id_mal = this.state.idMal;
-        console.log(id_mal)
         this.setState({
             dataJikan: {
+                ...this.state.dataJikan,
                 title: '',
                 url: '',
 
@@ -157,7 +191,7 @@ class AddAnime extends Component {
             },
             loadingGet: true,
         })
-        axios.get(uAPIlocal+'/api/v1/jikan/findanime/'+id_mal)
+        axios.get(uAPIlocal+'/api/v1/jikan/findanime/'+this.state.dataJikan.idMal)
         .then(function(response) {
             return response.data;
         })
@@ -396,34 +430,124 @@ class AddAnime extends Component {
     addAnimeSubmit(e){
         e.preventDefault();
         console.log(this.state.dataJikan)
-        // Swal.fire({
-        //     title: 'Are you sure?',
-        //     icon: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'Yes!',
-        //     allowOutsideClick: false,
-        //     showLoaderOnConfirm: true,
-        //     preConfirm: () => {
-        //         return axios.post(uAPIlocal+'/api/v1/animelist',{
-        //             // anime: this.state.addGenre.genre,
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //             Swal.fire('Oops...', 'Something went wrong!', 'error');
-        //         });
-        //     }
-        // }).then((result) => {
-        //     if (result.value) {
-        //         Swal.fire({
-        //             title: 'Success!',
-        //             text: 'Success tambah anime',
-        //             icon: 'success',
-        //             allowOutsideClick: false,
-        //         }).then(() => this.setState({ redirect: true }))
-        //     }
-        // })
+        const formData = new FormData();
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+        formData.append('idMal',this.state.dataJikan.idMal);
+        formData.append('url',this.state.dataJikan.url);
+        formData.append('images',this.state.gambar_anime.raw);
+        formData.append('title',this.state.dataJikan.title);
+        formData.append('title_english',this.state.dataJikan.title_english);
+        formData.append('title_synonyms',this.state.dataJikan.title_synonyms);
+        formData.append('title_japanese',this.state.dataJikan.title_japanese);
+        formData.append('types',this.state.dataJikan.selectedType.value);
+        formData.append('episodes',this.state.dataJikan.episodes);
+        formData.append('status',this.state.dataJikan.selectedStatus.value);
+        formData.append('aired',this.state.dataJikan.aired);
+        formData.append('premiered',this.state.dataJikan.premiered);
+        formData.append('broadcast',this.state.dataJikan.broadcast);
+
+        var producers = [];
+        this.state.dataJikan.selectedProducers.forEach(el => {
+            producers.push(
+                {value: el.value, label: el.label}
+            )
+        });
+        var valproducers = producers.map(a => a.value).join(",");
+        formData.append('producers',valproducers);
+
+        var licensors = [];
+        this.state.dataJikan.selectedLicensors.forEach(el => {
+            licensors.push(
+                {value: el.value, label: el.label}
+            )
+        });
+        var vallicensors = licensors.map(a => a.value).join(",");
+        formData.append('licensors',vallicensors);
+
+        var studios = [];
+        this.state.dataJikan.selectedStudios.forEach(el => {
+            studios.push(
+                {value: el.value, label: el.label}
+            )
+        });
+        var valstudios = studios.map(a => a.value).join(",");
+        formData.append('studios',valstudios);
+
+        formData.append('source',this.state.dataJikan.source);
+
+        var genres = [];
+        this.state.dataJikan.selectedGenres.forEach(el => {
+            genres.push(
+                {value: el.value, label: el.label}
+            )
+        });
+        var valgenres = genres.map(a => a.value).join(",");
+        formData.append('genres',valgenres);
+
+        formData.append('duration',this.state.dataJikan.duration);
+        formData.append('rating',this.state.dataJikan.rating);
+        formData.append('score',this.state.dataJikan.score);
+        formData.append('synopsis',this.state.dataJikan.synopsis);
+        formData.append('views',0);
+
+        var today = new Date();
+        var curTime = today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate()+' '+today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+        formData.append('published_time',curTime);
+        formData.append('modified_time',curTime);
+        // for (var pair of formData.entries()) {
+        //     console.log(pair[0]+ ': ' + pair[1]); 
+        // }
+
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!',
+            allowOutsideClick: false,
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                if (this.state.gambar_anime.icon === true) {
+                    Swal.fire({
+                        title: 'Oops!',
+                        text: 'Gambar Anime Tidak Ada!',
+                        icon: 'error',
+                        allowOutsideClick: false
+                    })
+                } else {
+                    return axios.post(uAPIlocal+'/api/v1/animelist',formData,config)
+                    .then(function(response) {
+                        //status 406 = data sudah ada (not acceptable)
+                        if (response.data.status === 406 ) {
+                            Swal.fire({
+                                title: 'Oops...!',
+                                html: response.data.message,
+                                icon: 'error',
+                                allowOutsideClick: false,
+                            })
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        Swal.fire('Oops...', 'Something went wrong!', 'error');
+                    });
+                }
+            }
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Success tambah anime',
+                    icon: 'success',
+                    allowOutsideClick: false,
+                }).then(() => this.setState({ redirect: true }))
+            }
+        })
     }
     optionsType = [
         { value: 'Tv', label: 'Tv' },
@@ -507,7 +631,7 @@ class AddAnime extends Component {
                                     <div className="form-group">
                                         <label>ID MAL (MyAnimeList)</label>
                                         <div className="input-group">
-                                            <input type="text" className="form-control col-sm-3" name="idMal" value={this.state.idMal}  onChange={this.onChange} placeholder="Ex: 38883" required/>
+                                            <input type="text" className="form-control col-sm-3" name="idMal" value={this.state.dataJikan.idMal}  onChange={this.addAnimeChange} placeholder="Ex: 38883" required/>
                                         
                                             <div className="input-group-btn">
                                                 <button type="button" className="btn btn-default" onClick={e => this.getJikan(e)}>
@@ -527,6 +651,37 @@ class AddAnime extends Component {
                                     <div className="form-group">
                                         <label>Slug (Url)</label>
                                         <input type="text" className="form-control" name="url" value={this.state.dataJikan.url}  onChange={this.addAnimeChange} placeholder="Url" required/>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label>Gambar Anime</label>
+                                        <div className='col-sm-2' style={{border:'2px dashed red'}}>
+                                            <div style={{width: '100%',height: 'auto',}}>
+                                            {
+                                                this.state.gambar_anime.icon ? (
+                                                    <FontAwesomeIcon icon={faPlus} onClick={this.gambarAnimeAdd} color='red' style={{
+                                                        cursor:'pointer', border:'2px dashed red', borderRadius:'100%', padding:'4px', width:'29px', height:'29px',
+                                                        display: 'inline-block',
+                                                        position: 'relative',
+                                                        top: '2px', left:'20px',
+                                                        margin: '40px',
+                                                    }} />
+                                                ):(
+                                                    <div style={{position: 'relative',display: 'inline-block',padding: '5px',}}>
+                                                        <img src={this.state.gambar_anime.preview} alt={this.state.gambar_anime.raw.name} style={{width: '100%',height: 'auto',}}/>
+                                                        <div style={{position:'relative',top:'4px'}}>
+                                                            <FontAwesomeIcon icon={faTrash} onClick={this.gambarAnimeDelete} color='red' style={{
+                                                                cursor:'pointer', border:'2px dashed red', borderRadius:'100%', padding:'4px', width:'29px', height:'29px',
+                                                                position: 'relative', 
+                                                                right: '-40%', 
+                                                            }} />
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                            </div>
+                                        </div>
+                                        <input id="gambar_anime" type="file" ref={this.gambarAnimeInput} style={{ display: "none" }} name="gambar_anime" onChange={this.gambarAnimeChange} onClick={this.gambarAnimeReset}/>
                                     </div>
                                     
                                     <div className="row">

@@ -6,6 +6,7 @@ import {
   } from "react-router-dom";
 import EditGenre from './page-content/genre/EditGenre';
 import EditProducer from './page-content/producer/EditProducer';
+import EditAnime from './page-content/anime/EditAnime';
 ;
 
 function IdSubPageContent(state, props) {
@@ -15,7 +16,7 @@ function IdSubPageContent(state, props) {
     let { formId } = useParams();
     
     if (pageContent === 'anime' && form === 'edit-anime'){
-        return <h3>edit anime</h3>;
+        return <EditAnime id={formId}/>;
     } else if (pageContent === 'genre' && form === 'edit-genre'){
         return <EditGenre id={formId}/>;
     } else if (pageContent === 'producer' && form === 'edit-producer'){

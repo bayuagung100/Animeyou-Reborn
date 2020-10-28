@@ -32,10 +32,50 @@ class Datatables extends Component {
             redirect: '',
         }
        
+        this.editAnime = this.editAnime.bind(this);
+        this.deleteAnime = this.deleteAnime.bind(this);
         this.editGenre = this.editGenre.bind(this);
         this.deleteGenre = this.deleteGenre.bind(this);
         this.editProducer = this.editProducer.bind(this);
         this.deleteProducer = this.deleteProducer.bind(this);
+    }
+
+    editAnime(id){
+        this.setState({ 
+            redirect: '/admin/anime/edit-anime',
+            url: '/admin/anime/edit-anime/'+id
+        })
+    }
+
+    deleteAnime(id, name){
+        // e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Hapus Anime: '+name,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete!',
+            allowOutsideClick: false,
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                return axios.delete(uAPIlocal+'/api/v1/animelist/'+id)
+                .catch(function (error) {
+                    console.log(error);
+                    Swal.fire('Oops...', 'Something went wrong!', 'error');
+                });
+            }
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Success delete anime!',
+                    icon: 'success',
+                    allowOutsideClick: false,
+                }).then(() => this.setState({ redirect: '/admin/anime' }))
+            }
+        })
     }
 
     editGenre(id){
@@ -115,6 +155,35 @@ class Datatables extends Component {
     }
 
     componentDidMount() {
+        $('#animelist').DataTable( {
+            order: [[ 0, "desc" ]],
+            processing: true,
+            serverSide: true,
+            deferRender: true,
+            ajax: {
+                url: uAPIlocal+"/api/v1/dt/animelist",
+                type: 'POST'
+            },
+            columns: [
+                // {title:"No", width:"50px", orderable: false},
+                {title:"Title"},
+                {title:"Published", orderable: false},
+                {title:"Aksi", width:"150px", orderable: false},
+            ],
+            columnDefs: [ {
+                targets: -1,
+                createdCell: (td, cellData, rowData, row, col) =>
+                    ReactDOM.render(
+                        <BrowserRouter>
+                        {/* {console.log('cellData: '+cellData)}
+                        {console.log('rowData: '+rowData)}
+                        {console.log('row: '+row)}
+                        {console.log('col: '+col)} */}
+                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editAnime(rowData[2])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteAnime(rowData[2], rowData[0])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
+                        </BrowserRouter>, td),
+            } ]
+        } );
+
         $('#genrelist').DataTable( {
             order: [[ 0, "desc" ]],
             processing: true,
@@ -175,7 +244,15 @@ class Datatables extends Component {
     }
 
     render() {
-        if (this.state.redirect === '/admin/genre') { //redirect setelah delete bank
+        if (this.state.redirect === '/admin/anime') { 
+            return (
+                <Route path='/admin/anime'>
+                    <Datatables id='animelist'/>
+                </Route>
+            )
+        } else if (this.state.redirect === '/admin/anime/edit-anime'){
+            return (<Redirect to={this.state.url}/>)
+        } else if (this.state.redirect === '/admin/genre') { 
             return (
                 <Route path='/admin/genre'>
                     <Datatables id='genrelist'/>
@@ -183,7 +260,7 @@ class Datatables extends Component {
             )
         } else if (this.state.redirect === '/admin/genre/edit-genre'){
             return (<Redirect to={this.state.url}/>)
-        } else if (this.state.redirect === '/admin/producer') { //redirect setelah delete bank
+        } else if (this.state.redirect === '/admin/producer') { 
             return (
                 <Route path='/admin/producer'>
                     <Datatables id='producerlist'/>

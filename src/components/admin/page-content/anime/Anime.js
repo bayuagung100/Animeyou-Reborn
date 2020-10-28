@@ -39,7 +39,7 @@ class Anime extends Component {
                             </div>
                             
                             <div className="card-body">
-                                {/* <Tbl id={this.state.tbl}></Tbl> */}
+                                <Tbl id={this.state.tbl}></Tbl>
                             </div>
                         </div>
                     </div>
