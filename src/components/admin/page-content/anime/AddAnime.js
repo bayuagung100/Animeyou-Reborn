@@ -368,8 +368,8 @@ class AddAnime extends Component {
                     selectedStatus: {value: results.status, label: results.status},
                     aired: results.aired.string,
 
-                    premiered: results.premiered,
-                    broadcast: results.broadcast,
+                    premiered: results.premiered===null ? '':results.premiered,
+                    broadcast: results.broadcast===null ? '':results.broadcast,
                     source: results.source,
                     duration: results.duration,
 
@@ -550,7 +550,7 @@ class AddAnime extends Component {
         })
     }
     optionsType = [
-        { value: 'Tv', label: 'Tv' },
+        { value: 'TV', label: 'TV' },
         { value: 'Movie', label: 'Movie' },
         { value: 'OVA', label: 'OVA' },
         { value: 'ONA', label: 'ONA' },
@@ -573,7 +573,7 @@ class AddAnime extends Component {
         this.setState({ 
             dataJikan:{
                 ...this.state.dataJikan,
-                type: selected.value,
+                status: selected.value,
                 selectedStatus: selected,
             }
         },()=>console.log(this.state.dataJikan));
@@ -738,12 +738,12 @@ class AddAnime extends Component {
                                     <div className="row">
                                         <div className="form-group col-sm-3">
                                             <label>Premiered</label>
-                                            <input type="text" className="form-control" name="premiered" value={this.state.dataJikan.premiered}  onChange={this.addAnimeChange} placeholder="Premiered" required/>
+                                            <input type="text" className="form-control" name="premiered" value={this.state.dataJikan.premiered}  onChange={this.addAnimeChange} placeholder="Premiered" />
                                         </div>
 
                                         <div className="form-group col-sm-3">
                                             <label>Broadcast</label>
-                                            <input type="text" className="form-control" name="broadcast" value={this.state.dataJikan.broadcast}  onChange={this.addAnimeChange} placeholder="Broadcast" required/>
+                                            <input type="text" className="form-control" name="broadcast" value={this.state.dataJikan.broadcast}  onChange={this.addAnimeChange} placeholder="Broadcast" />
                                         </div>
 
                                         <div className="form-group col-sm-3">

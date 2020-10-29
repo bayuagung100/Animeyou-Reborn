@@ -10,7 +10,7 @@ import {
 import PageContent from "./PageContent";
 import MenuSide from "../lib/MenuSide";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faEye, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faEye, faSignOutAlt, faAngleDown} from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2'
 import Dashboard from './page-content/Dashboard';
 
@@ -54,7 +54,7 @@ class Index extends Component {
     active(){
         this.setState((state, props) => {
             return {
-                path: this.props.history.location.pathname,
+                path: props.location.pathname,
             };
         })
     }
@@ -102,14 +102,41 @@ class Index extends Component {
                                 <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                                     {
                                         MenuSide.map((value, index) => {
+                                            // console.log(value.active)
                                             return(
-                                                <li key={index} className="nav-item">
-                                                    <Link to={`${this.props.match.path}`+value.url} onClick={this.active} className={"nav-link "+(this.state.path===value.active ? 'active':'')}>
+                                                <li key={index} className={"nav-item "+(value.child!==undefined ? 'has-treeview':'')}>
+                                                    <Link to={`${this.props.match.path}`+value.url} onClick={this.active} className={"nav-link "+(value.active.includes(this.state.path) ? 'active':'')}>
                                                         {value.fa}
                                                         <p>
                                                             {value.title}
+                                                            {
+                                                                value.child!==undefined ? (
+                                                                    <FontAwesomeIcon icon={faAngleDown} className="right"/>
+                                                                ):null
+                                                            }
                                                         </p>
                                                     </Link>
+                                                    {
+                                                        value.child!==undefined ? (
+                                                        <ul className="nav nav-treeview">
+                                                            {
+                                                                value.child.map((val,ind)=>{
+                                                                    return(
+                                                                    <li key={ind} className="nav-item">
+                                                                        <Link to={`${this.props.match.path}`+val.url} onClick={this.active}  className={"nav-link "+(this.state.path===val.active ? 'active':'')}>
+                                                                            {val.fa}
+                                                                            <p>
+                                                                                {val.title}
+                                                                            </p>
+                                                                        </Link>
+                                                                    </li>
+                                                                    )
+                                                                })
+                                                            }
+                                                            
+                                                        </ul>
+                                                        ):null
+                                                    }
                                                 </li>
                                             );
                                         })
