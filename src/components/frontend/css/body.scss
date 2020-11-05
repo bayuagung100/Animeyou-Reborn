@@ -200,7 +200,11 @@ $white-text: #fff;
 
                 .appmain-more {
                     // padding-top: 20px;
-
+                    .loading{
+                        text-align: center;
+                        line-height: 3;
+                        color: #000000;
+                    }
                     button.more {
                         width: 100%;
                         height: 34px;
@@ -260,6 +264,11 @@ $white-text: #fff;
                         .appmain-itemsAnimeTitle {
                             color: $white-text;
                         }
+                    }
+                }
+                .appmain-more {
+                    .loading{
+                        color: $white-text;
                     }
                 }
             }
@@ -489,7 +498,11 @@ $white-text: #fff;
 
             .appmain-more {
                 // padding-top: 20px;
-
+                .loading{
+                    text-align: center;
+                    line-height: 3;
+                    color: #000000;
+                }
                 button.more {
                     width: 100%;
                     height: 34px;
@@ -526,6 +539,11 @@ $white-text: #fff;
                         .appmain-itemsAnimeTitle {
                             color: $white-text;
                         }
+                    }
+                }
+                .appmain-more {
+                    .loading{
+                        color: $white-text;
                     }
                 }
             }
@@ -769,7 +787,11 @@ $white-text: #fff;
 
             .appmain-more {
                 // padding-top: 20px;
-
+                .loading{
+                    text-align: center;
+                    line-height: 3;
+                    color: #000000;
+                }
                 button.more {
                     width: 100%;
                     height: 34px;
@@ -806,6 +828,11 @@ $white-text: #fff;
                         .appmain-itemsAnimeTitle {
                             color: $white-text;
                         }
+                    }
+                }
+                .appmain-more {
+                    .loading{
+                        color: $white-text;
                     }
                 }
             }
@@ -1049,7 +1076,11 @@ $white-text: #fff;
 
             .appmain-more {
                 // padding-top: 20px;
-
+                .loading{
+                    text-align: center;
+                    line-height: 3;
+                    color: #000000;
+                }
                 button.more {
                     width: 100%;
                     height: 34px;
@@ -1086,6 +1117,11 @@ $white-text: #fff;
                         .appmain-itemsAnimeTitle {
                             color: $white-text;
                         }
+                    }
+                }
+                .appmain-more {
+                    .loading{
+                        color: $white-text;
                     }
                 }
             }

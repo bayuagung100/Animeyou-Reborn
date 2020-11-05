@@ -18,6 +18,7 @@ $white-text: #fff;
 $bg-tooltip: #828282;
 $bg-hover: #c4c4c4;
 $bg-hover-dark-mode: #828282;
+$zIndex: 10;
 @media (min-width: 1025px) {
     .nav-container {
         position: fixed;
@@ -27,7 +28,7 @@ $bg-hover-dark-mode: #828282;
         background: #ffffff;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         overflow: hidden;
-        z-index: 1;
+        z-index: $zIndex;
 
         .nav-brand {
             float: left;
@@ -468,7 +469,7 @@ $bg-hover-dark-mode: #828282;
         background: #ffffff;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         overflow: hidden;
-        z-index: 1;
+        z-index: $zIndex;
 
         .nav-brand {
             float: left;
@@ -814,7 +815,7 @@ $bg-hover-dark-mode: #828282;
         background: #ffffff;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         overflow: hidden;
-        z-index: 1;
+        z-index: $zIndex;
 
         .nav-brand {
             float: left;
@@ -1160,7 +1161,7 @@ $bg-hover-dark-mode: #828282;
         background: #ffffff;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         overflow: hidden;
-        z-index: 1;
+        z-index: $zIndex;
 
         .nav-brand {
             float: left;

@@ -18,7 +18,7 @@ const MenuSide= [
         fa: <FontAwesomeIcon icon={faFilm} style={{ marginRight:"6px"}}/> ,
         route: <Route path="/admin/anime" component={Admin} />,
         url: "#",
-        active: ["/admin/anime","/admin/anime/episode",],
+        active: ["/admin/anime","/admin/anime-episode",],
         child: [
         {
             title: "Daftar Anime",
@@ -29,8 +29,8 @@ const MenuSide= [
         {
             title: "Episode",
             fa: <FontAwesomeIcon icon={faCircleNotch} style={{ marginRight:"6px"}}/> ,
-            url: "/anime/episode",
-            active: "/admin/anime/episode",
+            url: "/anime-episode",
+            active: "/admin/anime-episode",
         },
         ]
     },

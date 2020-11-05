@@ -6,6 +6,10 @@ import Movie from "../../dummy/Movie";
 import LiveAction from '../../dummy/LiveAction';
 import Sidebar from '../../Sidebar';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+const uAPIlocal = 'http://'+window.location.hostname+':8080';
+
 
 class Desktop extends Component {
     constructor(props) {
@@ -17,14 +21,37 @@ class Desktop extends Component {
             movie: [],
             loadingLiveAction: false,
             liveaction: [],
+
+            itemsUpdated: 6,
+            loadingStateUpdated: false,
         };
         this.getDummy = this.getDummy.bind(this);
+        this.displayItems = this.displayItems.bind(this);
     }
+    displayItems() {
+        this.setState({ loadingStateUpdated: true });
+        setTimeout(() => {
+            this.setState({ itemsUpdated: this.state.itemsUpdated+6, loadingStateUpdated: false });
+        }, 3000);
+
+    }    
     getDummy(){
+        axios.get(uAPIlocal+'/api/v1/front/updated')
+        .then(function(response) {
+            return response.data.results;
+        })
+        .then(response => {
+            this.setState({
+                updated: response
+            },()=>console.log(this.state.updated))
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
         setTimeout(()=>{
             this.setState({
                 loadingUpdated: true,
-                updated: Updated,
+                // updated: Updated,
                 loadingMovie: true,
                 movie: Movie,
                 loadingLiveAction: true,
@@ -52,42 +79,42 @@ class Desktop extends Component {
                             this.state.loadingUpdated ? (
                                 <div className="approw">
                                     {
-                                        this.state.updated.map((value, index)=>{
+                                        this.state.updated.slice(0, this.state.itemsUpdated).map((value, index)=>{
 
                                             return(
                                                 <div key={index} className="appcol-4">
                                                     <div className="appmain-items">
-                                                        <Link to={`/watch?v=${value.title}`}>
+                                                        <Link to={`/watch?v=${value.episodeUrl}`}>
                                                             <div className="appmain-itemsImg">
-                                                                <img src={value.image} alt={value.title} />
+                                                                <img src={uAPIlocal+'/'+value.episodeGambar} alt={value.episodeJudul} />
                                                             </div>
                                                         </Link>
                                                         <div className="appmain-itemsBlock1">
-                                                            <Link to={`/anime/${value.anime}`}>
+                                                            <Link to={`/anime/${value.animeUrl}`}>
                                                                 <div className="appmain-itemsAnimeImg">
-                                                                    <img src={value.image} alt={value.title} />
+                                                                    <img src={uAPIlocal+'/'+value.animeGambar} alt={value.animeJudul} />
                                                                 </div>
                                                             </Link>
-                                                            <Link to={`/watch?v=${value.title}`}>
+                                                            <Link to={`/watch?v=${value.episodeUrl}`}>
                                                                 <div className="appmain-itemsTitleEpisode">
-                                                                    {value.title}
+                                                                    {value.episodeJudul}
                                                                 </div>
                                                             </Link>
                                                         </div>
                                                         <div className="appmain-itemsBlock2">
-                                                            <Link to={`/anime/${value.anime}`}>
+                                                            <Link to={`/anime/${value.animeUrl}`}>
                                                             <div className="appmain-itemsAnimeTitle">
-                                                                {value.anime}
+                                                                {value.animeJudul}
                                                             </div>
                                                             </Link>
                                                             <div className="appmain-itemsViews">
-                                                                {value.views} views
+                                                                {value.episodeViews} views
                                                             </div>
                                                             <div className="appmain-itemsDots">
                                                                 .
                                                             </div>
                                                             <div className="appmain-itemsUploaded">
-                                                                {value.uploads}
+                                                                {value.episodeUploads}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -183,7 +210,14 @@ class Desktop extends Component {
                         
                         
                         <div className="appmain-more">
-                            <button className="more"><FontAwesomeIcon icon={faAngleDown} size="lg"/></button>
+                            {
+                                this.state.loadingStateUpdated ? (
+                                    <p className='loading'>Loading...</p>
+                                ):(
+                                    this.state.itemsUpdated < this.state.updated.length && <button className="more" onClick={this.displayItems}><FontAwesomeIcon icon={faAngleDown} size="lg"/></button>
+                                )
+                            }
+                            
                         </div>
                         
                     </div>

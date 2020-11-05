@@ -78,6 +78,44 @@ class Datatables extends Component {
         })
     }
 
+    editAnimeEpisode(id){
+        this.setState({ 
+            redirect: '/admin/anime-episode/edit-episode',
+            url: '/admin/anime-episode/edit-episode/'+id
+        })
+    }
+
+    deleteAnimeEpisode(id, name){
+        // e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Hapus Episode Anime: '+name,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Delete!',
+            allowOutsideClick: false,
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                return axios.delete(uAPIlocal+'/api/v1/animeepisodelist/'+id)
+                .catch(function (error) {
+                    console.log(error);
+                    Swal.fire('Oops...', 'Something went wrong!', 'error');
+                });
+            }
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Success delete anime!',
+                    icon: 'success',
+                    allowOutsideClick: false,
+                }).then(() => this.setState({ redirect: '/admin/anime-episode' }))
+            }
+        })
+    }
+
     editGenre(id){
         this.setState({ 
             redirect: '/admin/genre/edit-genre',
@@ -155,6 +193,35 @@ class Datatables extends Component {
     }
 
     componentDidMount() {
+        $('#animeepisodelist').DataTable( {
+            order: [[ 0, "desc" ]],
+            processing: true,
+            serverSide: true,
+            deferRender: true,
+            ajax: {
+                url: uAPIlocal+"/api/v1/dt/animeepisodelist",
+                type: 'POST'
+            },
+            columns: [
+                // {title:"No", width:"50px", orderable: false},
+                {title:"Title"},
+                {title:"Published", orderable: false},
+                {title:"Aksi", width:"150px", orderable: false},
+            ],
+            columnDefs: [ {
+                targets: -1,
+                createdCell: (td, cellData, rowData, row, col) =>
+                    ReactDOM.render(
+                        <BrowserRouter>
+                        {/* {console.log('cellData: '+cellData)}
+                        {console.log('rowData: '+rowData)}
+                        {console.log('row: '+row)}
+                        {console.log('col: '+col)} */}
+                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editAnimeEpisode(rowData[2])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteAnimeEpisode(rowData[2], rowData[0])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
+                        </BrowserRouter>, td),
+            } ]
+        } );
+
         $('#animelist').DataTable( {
             order: [[ 0, "desc" ]],
             processing: true,
@@ -251,6 +318,14 @@ class Datatables extends Component {
                 </Route>
             )
         } else if (this.state.redirect === '/admin/anime/edit-anime'){
+            return (<Redirect to={this.state.url}/>)
+        } else if (this.state.redirect === '/admin/anime-episode') { 
+            return (
+                <Route path='/admin/anime-episode'>
+                    <Datatables id='animeepisodelist'/>
+                </Route>
+            )
+        } else if (this.state.redirect === '/admin/anime-episode/edit-episode'){
             return (<Redirect to={this.state.url}/>)
         } else if (this.state.redirect === '/admin/genre') { 
             return (

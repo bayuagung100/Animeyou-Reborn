@@ -7,7 +7,7 @@ import {
     Link,
     withRouter
 } from "react-router-dom";
-import PageContent from "./PageContent";
+import PostType from "./PostType";
 import MenuSide from "../lib/MenuSide";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faEye, faSignOutAlt, faAngleDown} from '@fortawesome/free-solid-svg-icons';
@@ -152,8 +152,8 @@ class Index extends Component {
                     <div className="content-wrapper">
 
                         <Switch>
-                            <Route path={`${match}/:pageContent`}>
-                                <PageContent/>
+                            <Route path={`${match}/:postType`}>
+                                <PostType/>
                             </Route>
                             <Route path={match}>
                                 <Dashboard/>

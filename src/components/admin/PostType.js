@@ -9,40 +9,53 @@ import {
   } from "react-router-dom";
 
 import Genre from './page-content/genre/Genre';
-import SubPageContent from './SubPageContent';
+import PostAction from './PostAction';
 import Producer from './page-content/producer/Producer';
 import Anime from './page-content/anime/Anime';
+import Episode from './page-content/anime/episode/Episode';
 
-function PageContent() {
+function PostType() {
     let match = useRouteMatch();
-    let { pageContent } = useParams();
-    if(pageContent === 'anime'){
+    let { postType } = useParams();
+    console.log(postType)
+    if(postType === 'anime'){
         return (
             <Switch>
-                <Route path={`${match.path}/:form`}>
-                    <SubPageContent />
+                <Route path={`${match.path}/:postAction`}>
+                    <PostAction />
                 </Route>
                 <Route path={match.path}>
                     <Anime tbl='animelist'/>
                 </Route>
             </Switch>
         );
-    } else if(pageContent === 'genre'){
+    } else if(postType === 'anime-episode'){
         return (
             <Switch>
-                <Route path={`${match.path}/:form`}>
-                    <SubPageContent />
+                <Route path={`${match.path}/:postAction`}>
+                    <PostAction />
+                </Route>
+                <Route path={match.path}>
+                    <Episode tbl='animeepisodelist'/>
+                </Route>
+            </Switch>
+        );
+    } else if(postType === 'genre'){
+        return (
+            <Switch>
+                <Route path={`${match.path}/:postAction`}>
+                    <PostAction />
                 </Route>
                 <Route path={match.path}>
                     <Genre tbl='genrelist'/>
                 </Route>
             </Switch>
         );
-    } else if(pageContent === 'producer'){
+    } else if(postType === 'producer'){
         return (
             <Switch>
-                <Route path={`${match.path}/:form`}>
-                    <SubPageContent />
+                <Route path={`${match.path}/:postAction`}>
+                    <PostAction />
                 </Route>
                 <Route path={match.path}>
                     <Producer tbl='producerlist'/>
@@ -54,4 +67,4 @@ function PageContent() {
     }
 }
 
-export default withRouter(PageContent);
+export default withRouter(PostType);

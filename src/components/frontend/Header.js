@@ -45,7 +45,7 @@ class Header extends Component {
         
         this.state = {
             searchBox: '',
-            loading: false,
+            loading: true,
             goSearch: false,
             goCollection: false,
             menuSetting: false,
@@ -112,11 +112,11 @@ class Header extends Component {
     }
 
     componentDidMount(){
-        setTimeout(()=>{
-            this.setState({
-                loading: true,
-            })
-        }, 3000);
+        // setTimeout(()=>{
+        //     this.setState({
+        //         loading: true,
+        //     })
+        // }, 3000);
 
     }
     

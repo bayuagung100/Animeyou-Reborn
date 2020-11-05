@@ -242,9 +242,18 @@ class EditAnime extends Component {
         formData.append('score',this.state.dataAnime.score);
         formData.append('synopsis',this.state.dataAnime.synopsis);
 
-        var today = new Date();
-        var curTime = today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate()+' '+today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
-        formData.append('modified_time',curTime);
+        // var today = new Date();
+        // var curTime = today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate()+' '+today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+        // formData.append('modified_time',curTime);
+
+        var date = new Date();
+            date = date.getFullYear() + '-' +
+                ('00' + (date.getMonth()+1)).slice(-2) + '-' +
+                ('00' + date.getDate()).slice(-2) + ' ' + 
+                ('00' + date.getHours()).slice(-2) + ':' + 
+                ('00' + date.getMinutes()).slice(-2) + ':' + 
+                ('00' + date.getSeconds()).slice(-2);
+        formData.append('modified_time',date);
         
         // for (var pair of formData.entries()) {
         //     console.log(pair[0]+ ': ' + pair[1]); 
@@ -328,13 +337,16 @@ class EditAnime extends Component {
             }
             
             
-            var dataStudios = data.studios.split(',');
+            var dataStudios = data.studios===null ? '':data.studios.split(',');
             var selectedStudios = [];
-            dataStudios.forEach(el => {
-                selectedStudios.push(
-                    {value: el, label: el}
-                )
-            });
+            if (dataStudios != '') {
+                dataStudios.forEach(el => {
+                    selectedStudios.push(
+                        {value: el, label: el}
+                    )
+                });
+            }
+            
             var dataGenres = data.genres.split(',');
             var selectedGenres = [];
             dataGenres.forEach(el => {
