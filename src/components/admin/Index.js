@@ -10,30 +10,25 @@ import {
 import PostType from "./PostType";
 import MenuSide from "../lib/MenuSide";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faEye, faSignOutAlt, faAngleDown} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faEye, faSignOutAlt, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2'
 import Dashboard from './page-content/Dashboard';
 
 class Index extends Component {
     constructor(props) {
         super(props);
-        let token = localStorage.getItem('token');
-        let login = true;
-        if (token == null) {
-            login = false
-        }
         this.state = {
-            login,
+            login: this.props.location.state ? this.props.location.state.login : false,
+            detailLogin: this.props.location.state ? this.props.location.state.detailLogin : null,
             path: this.props.history.location.pathname,
-
         }
 
         this.logout = this.logout.bind(this);
         this.active = this.active.bind(this);
     }
 
-    logout(){
-        Swal.fire({
+    async logout() {
+        await Swal.fire({
             title: 'Are you sure?',
             icon: 'warning',
             showCancelButton: true,
@@ -43,15 +38,16 @@ class Index extends Component {
             allowOutsideClick: false
         }).then((result) => {
             if (result.value) {
-                localStorage.removeItem("token");
+                localStorage.removeItem("rememberMe");
                 this.setState({
-                    login: false
+                    login: false,
+                    detailLogin: null,
                 })
             }
         })
     }
 
-    active(){
+    active() {
         this.setState((state, props) => {
             return {
                 path: props.location.pathname,
@@ -63,11 +59,11 @@ class Index extends Component {
     }
 
     render() {
-        if (this.state.login === false) {
+        if (this.state.login === false || this.state.detailLogin === null) {
             return (<Redirect to="/auth" />)
         }
         const match = this.props.match.path;
-        
+
         return (
             <div className="sidebar-mini layout-fixed layout-navbar-fixed">
                 <div className="wrapper">
@@ -75,15 +71,15 @@ class Index extends Component {
                     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link to="#" className="nav-link" data-widget="pushmenu" ><FontAwesomeIcon icon={faBars}/></Link>
+                                <Link to="#" className="nav-link" data-widget="pushmenu" ><FontAwesomeIcon icon={faBars} /></Link>
                             </li>
                         </ul>
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <Link to="/" className="nav-link" target="_blank"><FontAwesomeIcon icon={faEye}/> Website</Link>
+                                <Link to="/" className="nav-link" target="_blank"><FontAwesomeIcon icon={faEye} /> Website</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="#" className="nav-link" onClick={this.logout}><FontAwesomeIcon icon={faSignOutAlt}/> Logout</Link>
+                                <Link to="#" className="nav-link" onClick={this.logout}><FontAwesomeIcon icon={faSignOutAlt} /> Logout</Link>
                             </li>
                         </ul>
                     </nav>
@@ -103,45 +99,45 @@ class Index extends Component {
                                     {
                                         MenuSide.map((value, index) => {
                                             // console.log(value.active)
-                                            return(
-                                                <li key={index} className={"nav-item "+(value.child!==undefined ? 'has-treeview':'')}>
-                                                    <Link to={`${this.props.match.path}`+value.url} onClick={this.active} className={"nav-link "+(value.active.includes(this.state.path) ? 'active':'')}>
+                                            return (
+                                                <li key={index} className={"nav-item " + (value.child !== undefined ? 'has-treeview' : '')}>
+                                                    <Link to={`${this.props.match.path}` + value.url} onClick={this.active} className={"nav-link " + (value.active.includes(this.state.path) ? 'active' : '')}>
                                                         {value.fa}
                                                         <p>
                                                             {value.title}
                                                             {
-                                                                value.child!==undefined ? (
-                                                                    <FontAwesomeIcon icon={faAngleDown} className="right"/>
-                                                                ):null
+                                                                value.child !== undefined ? (
+                                                                    <FontAwesomeIcon icon={faAngleDown} className="right" />
+                                                                ) : null
                                                             }
                                                         </p>
                                                     </Link>
                                                     {
-                                                        value.child!==undefined ? (
-                                                        <ul className="nav nav-treeview">
-                                                            {
-                                                                value.child.map((val,ind)=>{
-                                                                    return(
-                                                                    <li key={ind} className="nav-item">
-                                                                        <Link to={`${this.props.match.path}`+val.url} onClick={this.active}  className={"nav-link "+(this.state.path===val.active ? 'active':'')}>
-                                                                            {val.fa}
-                                                                            <p>
-                                                                                {val.title}
-                                                                            </p>
-                                                                        </Link>
-                                                                    </li>
-                                                                    )
-                                                                })
-                                                            }
-                                                            
-                                                        </ul>
-                                                        ):null
+                                                        value.child !== undefined ? (
+                                                            <ul className="nav nav-treeview">
+                                                                {
+                                                                    value.child.map((val, ind) => {
+                                                                        return (
+                                                                            <li key={ind} className="nav-item">
+                                                                                <Link to={`${this.props.match.path}` + val.url} onClick={this.active} className={"nav-link " + (this.state.path === val.active ? 'active' : '')}>
+                                                                                    {val.fa}
+                                                                                    <p>
+                                                                                        {val.title}
+                                                                                    </p>
+                                                                                </Link>
+                                                                            </li>
+                                                                        )
+                                                                    })
+                                                                }
+
+                                                            </ul>
+                                                        ) : null
                                                     }
                                                 </li>
                                             );
                                         })
                                     }
-                                    
+
                                 </ul>
                             </nav>
                         </div>
@@ -153,10 +149,10 @@ class Index extends Component {
 
                         <Switch>
                             <Route path={`${match}/:postType`}>
-                                <PostType/>
+                                <PostType />
                             </Route>
                             <Route path={match}>
-                                <Dashboard/>
+                                <Dashboard />
                             </Route>
                         </Switch>
 
@@ -167,7 +163,7 @@ class Index extends Component {
                         <strong>Copyright &copy; 2020 <a href="http://adminlte.io">Animeyou</a>.</strong>
                         All rights reserved.
                         <div className="float-right d-none d-sm-inline-block">
-                        <b>Version</b> 1.0
+                            <b>Version</b> 1.0
                         </div>
                     </footer>
                 </div>

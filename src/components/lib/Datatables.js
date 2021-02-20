@@ -6,21 +6,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Swal from 'sweetalert2'
 import axios from "axios";
+import { base64_encode } from "./Func";
+import { apiV1, apiV2, clientKey, uAPI } from "./Config";
 
 
 const $ = require('jquery');
 $.Datatable = require('datatables.net-bs4');
 
-const uAPIlocal = 'http://'+window.location.hostname+':8080';
-
 class DtTable extends React.Component {
     render() {
         const id = this.props.id;
         return (
-        <div className="table-responsive">
-            <table id={id} className="table table-striped table-bordered" width="100%" >
-            </table>
-        </div>
+            <div className="table-responsive">
+                <table id={id} className="table table-striped table-bordered" width="100%" >
+                </table>
+            </div>
         )
     }
 }
@@ -31,7 +31,7 @@ class Datatables extends Component {
         this.state = {
             redirect: '',
         }
-       
+
         this.editAnime = this.editAnime.bind(this);
         this.deleteAnime = this.deleteAnime.bind(this);
         this.editGenre = this.editGenre.bind(this);
@@ -40,18 +40,18 @@ class Datatables extends Component {
         this.deleteProducer = this.deleteProducer.bind(this);
     }
 
-    editAnime(id){
-        this.setState({ 
+    editAnime(id) {
+        this.setState({
             redirect: '/admin/anime/edit-anime',
-            url: '/admin/anime/edit-anime/'+id
+            url: '/admin/anime/edit-anime/' + id
         })
     }
 
-    deleteAnime(id, name){
+    deleteAnime(id, name) {
         // e.preventDefault();
         Swal.fire({
             title: 'Are you sure?',
-            text: 'Hapus Anime: '+name,
+            text: 'Hapus Anime: ' + name,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -60,11 +60,11 @@ class Datatables extends Component {
             allowOutsideClick: false,
             showLoaderOnConfirm: true,
             preConfirm: () => {
-                return axios.delete(uAPIlocal+'/api/v1/animelist/'+id)
-                .catch(function (error) {
-                    console.log(error);
-                    Swal.fire('Oops...', 'Something went wrong!', 'error');
-                });
+                return axios.delete(uAPI + apiV1 + 'animelist/' + id)
+                    .catch(function (error) {
+                        console.log(error);
+                        Swal.fire('Oops...', 'Something went wrong!', 'error');
+                    });
             }
         }).then((result) => {
             if (result.value) {
@@ -78,18 +78,18 @@ class Datatables extends Component {
         })
     }
 
-    editAnimeEpisode(id){
-        this.setState({ 
+    editAnimeEpisode(id) {
+        this.setState({
             redirect: '/admin/anime-episode/edit-episode',
-            url: '/admin/anime-episode/edit-episode/'+id
+            url: '/admin/anime-episode/edit-episode/' + id
         })
     }
 
-    deleteAnimeEpisode(id, name){
+    deleteAnimeEpisode(id, name) {
         // e.preventDefault();
         Swal.fire({
             title: 'Are you sure?',
-            text: 'Hapus Episode Anime: '+name,
+            text: 'Hapus Episode Anime: ' + name,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -98,11 +98,11 @@ class Datatables extends Component {
             allowOutsideClick: false,
             showLoaderOnConfirm: true,
             preConfirm: () => {
-                return axios.delete(uAPIlocal+'/api/v1/animeepisodelist/'+id)
-                .catch(function (error) {
-                    console.log(error);
-                    Swal.fire('Oops...', 'Something went wrong!', 'error');
-                });
+                return axios.delete(uAPI + apiV1 + 'animeepisodelist/' + id)
+                    .catch(function (error) {
+                        console.log(error);
+                        Swal.fire('Oops...', 'Something went wrong!', 'error');
+                    });
             }
         }).then((result) => {
             if (result.value) {
@@ -116,18 +116,18 @@ class Datatables extends Component {
         })
     }
 
-    editGenre(id){
-        this.setState({ 
+    editGenre(id) {
+        this.setState({
             redirect: '/admin/genre/edit-genre',
-            url: '/admin/genre/edit-genre/'+id
+            url: '/admin/genre/edit-genre/' + id
         })
     }
 
-    deleteGenre(id, name){
+    deleteGenre(id, name) {
         // e.preventDefault();
         Swal.fire({
             title: 'Are you sure?',
-            text: 'Hapus Genre: '+name,
+            text: 'Hapus Genre: ' + name,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -136,11 +136,11 @@ class Datatables extends Component {
             allowOutsideClick: false,
             showLoaderOnConfirm: true,
             preConfirm: () => {
-                return axios.delete(uAPIlocal+'/api/v1/genrelist/'+id)
-                .catch(function (error) {
-                    console.log(error);
-                    Swal.fire('Oops...', 'Something went wrong!', 'error');
-                });
+                return axios.delete(uAPI + apiV1 + 'genrelist/' + id)
+                    .catch(function (error) {
+                        console.log(error);
+                        Swal.fire('Oops...', 'Something went wrong!', 'error');
+                    });
             }
         }).then((result) => {
             if (result.value) {
@@ -154,18 +154,18 @@ class Datatables extends Component {
         })
     }
 
-    editProducer(id){
-        this.setState({ 
+    editProducer(id) {
+        this.setState({
             redirect: '/admin/producer/edit-producer',
-            url: '/admin/producer/edit-producer/'+id
+            url: '/admin/producer/edit-producer/' + id
         })
     }
 
-    deleteProducer(id, name){
+    deleteProducer(id, name) {
         // e.preventDefault();
         Swal.fire({
             title: 'Are you sure?',
-            text: 'Hapus Producer: '+name,
+            text: 'Hapus Producer: ' + name,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -174,11 +174,11 @@ class Datatables extends Component {
             allowOutsideClick: false,
             showLoaderOnConfirm: true,
             preConfirm: () => {
-                return axios.delete(uAPIlocal+'/api/v1/producerlist/'+id)
-                .catch(function (error) {
-                    console.log(error);
-                    Swal.fire('Oops...', 'Something went wrong!', 'error');
-                });
+                return axios.delete(uAPI + apiV1 + 'producerlist/' + id)
+                    .catch(function (error) {
+                        console.log(error);
+                        Swal.fire('Oops...', 'Something went wrong!', 'error');
+                    });
             }
         }).then((result) => {
             if (result.value) {
@@ -193,159 +193,176 @@ class Datatables extends Component {
     }
 
     componentDidMount() {
-        $('#animeepisodelist').DataTable( {
-            order: [[ 0, "desc" ]],
+        $('#animeepisodelist').DataTable({
+            order: [[0, "desc"]],
             processing: true,
             serverSide: true,
             deferRender: true,
             ajax: {
-                url: uAPIlocal+"/api/v1/dt/animeepisodelist",
+                url: uAPI + "/api/v1/dt/animeepisodelist",
                 type: 'POST'
             },
             columns: [
                 // {title:"No", width:"50px", orderable: false},
-                {title:"Title"},
-                {title:"Published", orderable: false},
-                {title:"Aksi", width:"150px", orderable: false},
+                { title: "Title" },
+                { title: "Published", orderable: false },
+                { title: "Aksi", width: "150px", orderable: false },
             ],
-            columnDefs: [ {
+            columnDefs: [{
                 targets: -1,
                 createdCell: (td, cellData, rowData, row, col) =>
                     ReactDOM.render(
                         <BrowserRouter>
-                        {/* {console.log('cellData: '+cellData)}
+                            {/* {console.log('cellData: '+cellData)}
                         {console.log('rowData: '+rowData)}
                         {console.log('row: '+row)}
                         {console.log('col: '+col)} */}
-                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editAnimeEpisode(rowData[2])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteAnimeEpisode(rowData[2], rowData[0])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
+                            <button type="button" className="btn btn-primary btn-sm" onClick={() => this.editAnimeEpisode(rowData[2])}> <FontAwesomeIcon icon={faEdit} /> Edit</button> <button type="button" className="btn btn-danger btn-sm" onClick={() => this.deleteAnimeEpisode(rowData[2], rowData[0])}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
                         </BrowserRouter>, td),
-            } ]
-        } );
+            }]
+        });
 
-        $('#animelist').DataTable( {
-            order: [[ 0, "desc" ]],
+        $('#animelist').DataTable({
+            order: [[0, "desc"]],
             processing: true,
             serverSide: true,
             deferRender: true,
             ajax: {
-                url: uAPIlocal+"/api/v1/dt/animelist",
+                headers: {
+                    'Authorization': `Bearer ${base64_encode(clientKey)}`
+                },
+                url: uAPI + apiV2 + "dt/animelist",
+                type: 'POST',
+                // success: function (accessToken) {
+                //     // console.log(accessToken);
+                //     $.ajax({
+                //         headers: {
+                //             'Authorization': `Bearer ${base64_encode(accessToken)}`
+                //         },
+                //         url: uAPI + apiV2 + "dt/animelist",
+                //         type: 'POST',
+                //         dataSrc: function (json) {
+                //             console.log(json)
+                //             return json.data;
+                //         }
+                //     })
+                // },
+            },
+            columns: [
+                // {title:"No", width:"50px", orderable: false},
+                { title: "Title" },
+                { title: "Published", orderable: false },
+                { title: "Aksi", width: "150px", orderable: false },
+            ],
+            columnDefs: [{
+                targets: -1,
+                createdCell: (td, cellData, rowData, row, col) =>
+                    ReactDOM.render(
+                        <BrowserRouter>
+                            {/* {console.log('cellData: ' + cellData)}
+                            {console.log('rowData: ' + rowData)}
+                            {console.log('row: ' + row)}
+                            {console.log('col: ' + col)} */}
+                            <button type="button" className="btn btn-primary btn-sm" onClick={() => this.editAnime(rowData[2])}> <FontAwesomeIcon icon={faEdit} /> Edit</button> <button type="button" className="btn btn-danger btn-sm" onClick={() => this.deleteAnime(rowData[2], rowData[0])}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
+                        </BrowserRouter>, td),
+            }]
+        });
+
+        $('#genrelist').DataTable({
+            order: [[0, "desc"]],
+            processing: true,
+            serverSide: true,
+            deferRender: true,
+            ajax: {
+                url: uAPI + "/api/v1/dt/genrelist",
                 type: 'POST'
             },
             columns: [
                 // {title:"No", width:"50px", orderable: false},
-                {title:"Title"},
-                {title:"Published", orderable: false},
-                {title:"Aksi", width:"150px", orderable: false},
+                { title: "Nama Genre" },
+                { title: "Aksi", width: "150px", orderable: false },
             ],
-            columnDefs: [ {
+            columnDefs: [{
                 targets: -1,
                 createdCell: (td, cellData, rowData, row, col) =>
                     ReactDOM.render(
                         <BrowserRouter>
-                        {/* {console.log('cellData: '+cellData)}
+                            {/* {console.log('cellData: '+cellData)}
                         {console.log('rowData: '+rowData)}
                         {console.log('row: '+row)}
                         {console.log('col: '+col)} */}
-                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editAnime(rowData[2])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteAnime(rowData[2], rowData[0])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
+                            <button type="button" className="btn btn-primary btn-sm" onClick={() => this.editGenre(rowData[1])}> <FontAwesomeIcon icon={faEdit} /> Edit</button> <button type="button" className="btn btn-danger btn-sm" onClick={() => this.deleteGenre(rowData[1], rowData[0])}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
                         </BrowserRouter>, td),
-            } ]
-        } );
+            }]
+        });
 
-        $('#genrelist').DataTable( {
-            order: [[ 0, "desc" ]],
+        $('#producerlist').DataTable({
+            order: [[0, "desc"]],
             processing: true,
             serverSide: true,
             deferRender: true,
             ajax: {
-                url: uAPIlocal+"/api/v1/dt/genrelist",
-                type: 'POST'
-            },
-            columns: [
-                // {title:"No", width:"50px", orderable: false},
-                {title:"Nama Genre"},
-                {title:"Aksi", width:"150px", orderable: false},
-            ],
-            columnDefs: [ {
-                targets: -1,
-                createdCell: (td, cellData, rowData, row, col) =>
-                    ReactDOM.render(
-                        <BrowserRouter>
-                        {/* {console.log('cellData: '+cellData)}
-                        {console.log('rowData: '+rowData)}
-                        {console.log('row: '+row)}
-                        {console.log('col: '+col)} */}
-                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editGenre(rowData[1])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteGenre(rowData[1], rowData[0])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
-                        </BrowserRouter>, td),
-            } ]
-        } );
-
-        $('#producerlist').DataTable( {
-            order: [[ 0, "desc" ]],
-            processing: true,
-            serverSide: true,
-            deferRender: true,
-            ajax: {
-                url: uAPIlocal+"/api/v1/dt/producerlist",
+                url: uAPI + "/api/v1/dt/producerlist",
                 type: 'POST'
             },
             columns: [
                 // {title:"No", width:"50px"},
-                {title:"Nama Producer"},
-                {title:"Aksi", width:"150px", orderable: false},
+                { title: "Nama Producer" },
+                { title: "Aksi", width: "150px", orderable: false },
             ],
-            columnDefs: [ {
+            columnDefs: [{
                 targets: -1,
                 createdCell: (td, cellData, rowData, row, col) =>
                     ReactDOM.render(
                         <BrowserRouter>
-                        {/* {console.log('cellData: '+cellData)}
+                            {/* {console.log('cellData: '+cellData)}
                         {console.log('rowData: '+rowData)}
                         {console.log('row: '+row)}
                         {console.log('col: '+col)} */}
-                        <button type="button"  className="btn btn-primary btn-sm" onClick={() => this.editProducer(rowData[1])}> <FontAwesomeIcon icon={faEdit}/> Edit</button> <button type="button"  className="btn btn-danger btn-sm" onClick={() => this.deleteProducer(rowData[1], rowData[0])}> <FontAwesomeIcon icon={faTrash}/> Delete</button>
+                            <button type="button" className="btn btn-primary btn-sm" onClick={() => this.editProducer(rowData[1])}> <FontAwesomeIcon icon={faEdit} /> Edit</button> <button type="button" className="btn btn-danger btn-sm" onClick={() => this.deleteProducer(rowData[1], rowData[0])}> <FontAwesomeIcon icon={faTrash} /> Delete</button>
                         </BrowserRouter>, td),
-            } ]
-        } );
-        
-     
+            }]
+        });
+
+
     }
 
     render() {
-        if (this.state.redirect === '/admin/anime') { 
+        if (this.state.redirect === '/admin/anime') {
             return (
                 <Route path='/admin/anime'>
-                    <Datatables id='animelist'/>
+                    <Datatables id='animelist' />
                 </Route>
             )
-        } else if (this.state.redirect === '/admin/anime/edit-anime'){
-            return (<Redirect to={this.state.url}/>)
-        } else if (this.state.redirect === '/admin/anime-episode') { 
+        } else if (this.state.redirect === '/admin/anime/edit-anime') {
+            return (<Redirect to={this.state.url} />)
+        } else if (this.state.redirect === '/admin/anime-episode') {
             return (
                 <Route path='/admin/anime-episode'>
-                    <Datatables id='animeepisodelist'/>
+                    <Datatables id='animeepisodelist' />
                 </Route>
             )
-        } else if (this.state.redirect === '/admin/anime-episode/edit-episode'){
-            return (<Redirect to={this.state.url}/>)
-        } else if (this.state.redirect === '/admin/genre') { 
+        } else if (this.state.redirect === '/admin/anime-episode/edit-episode') {
+            return (<Redirect to={this.state.url} />)
+        } else if (this.state.redirect === '/admin/genre') {
             return (
                 <Route path='/admin/genre'>
-                    <Datatables id='genrelist'/>
+                    <Datatables id='genrelist' />
                 </Route>
             )
-        } else if (this.state.redirect === '/admin/genre/edit-genre'){
-            return (<Redirect to={this.state.url}/>)
-        } else if (this.state.redirect === '/admin/producer') { 
+        } else if (this.state.redirect === '/admin/genre/edit-genre') {
+            return (<Redirect to={this.state.url} />)
+        } else if (this.state.redirect === '/admin/producer') {
             return (
                 <Route path='/admin/producer'>
-                    <Datatables id='producerlist'/>
+                    <Datatables id='producerlist' />
                 </Route>
             )
-        } else if (this.state.redirect === '/admin/producer/edit-producer'){
-            return (<Redirect to={this.state.url}/>)
-        } 
+        } else if (this.state.redirect === '/admin/producer/edit-producer') {
+            return (<Redirect to={this.state.url} />)
+        }
         return (
-            <DtTable id={this.props.id}/>
+            <DtTable id={this.props.id} />
         )
     }
 

@@ -17,7 +17,7 @@ const MenuSide= [
         title: "Anime",
         fa: <FontAwesomeIcon icon={faFilm} style={{ marginRight:"6px"}}/> ,
         route: <Route path="/admin/anime" component={Admin} />,
-        url: "#",
+        url: "/#",
         active: ["/admin/anime","/admin/anime-episode",],
         child: [
         {

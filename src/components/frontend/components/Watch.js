@@ -191,6 +191,7 @@ class Watch extends Component{
             })
         }, 3000);
 
+
         document.addEventListener("fullscreenchange", function() {
             var idleMouseTimer;
             var forceMouseHide = false;
@@ -263,7 +264,12 @@ class Watch extends Component{
                                                             onProgress={this.handleProgress}
                                                             onDuration={this.handleDuration}
                                                         />
-                                                        <div className='controls' ref={this.Refcontrols}>
+                                                        {/* <iframe
+                                                        className='responsive-iframe'
+                                                            src="https://www.blogger.com/video.g?token=AD6v5dwTMSW941QBbt8mQkkn45DGTRAWwBIUpoOcx5gUV5jxOI0Ktp0lxgwq4oazAlhSYTEXSnD1U6lgsSZikkRqxFbBcJKxCGoYMavwUVMLBlafPcQgPNwMXo6yPBGLPwfePyi_wwKC"
+                                                            allowFullScreen
+                                                        /> */}
+                                                        {/* <div className='controls' ref={this.Refcontrols}>
                                                             <div className='play' onClick={this.handlePlayPause}>
                                                                 {
                                                                     this.state.Player.playing ? (
@@ -309,7 +315,7 @@ class Watch extends Component{
                                                                 />
                                                                 <progress className='loaded' max={1} value={this.state.Player.loaded} />
                                                             </div>
-                                                        </div>
+                                                        </div> */}
                                                         
                                                         {/* <iframe className='responsive-iframe' src='https://www.blogger.com/video.g?token=AD6v5dwTMSW941QBbt8mQkkn45DGTRAWwBIUpoOcx5gUV5jxOI0Ktp0lxgwq4oazAlhSYTEXSnD1U6lgsSZikkRqxFbBcJKxCGoYMavwUVMLBlafPcQgPNwMXo6yPBGLPwfePyi_wwKC' allowFullScreen></iframe> */}
                                                     </div>
