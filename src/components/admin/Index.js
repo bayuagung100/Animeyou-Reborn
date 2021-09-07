@@ -56,6 +56,7 @@ class Index extends Component {
     }
 
     componentDidMount() {
+        console.log("detailLogin", this.state.detailLogin)
     }
 
     render() {

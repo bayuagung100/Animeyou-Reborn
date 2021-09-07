@@ -404,7 +404,8 @@ class EditAnime extends Component {
             })
             .catch(error => {
                 console.log(error);
-                Swal.fire('Oops...', 'Something went wrong!', 'error');
+                Swal.fire('Oops...', 'Something went wrong!', 'error').then(() => this.setState({ redirect: true }));
+                
             });
     }
 
